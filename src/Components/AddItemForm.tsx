@@ -1,12 +1,12 @@
 import React, {ChangeEvent, KeyboardEvent, useReducer} from "react";
 import {onChangeInputAC, setTrimValueAC, TitleReducer} from "../Reducers/TitleReducer";
 import {addTaskItemFormAC, ErrorReducer, onChangeErrorAC} from "../Reducers/ErrorReducer";
-import {Button} from "@mui/material"
-
+import {Button, IconButton, TextField} from "@mui/material"
+import {ControlPoint} from "@mui/icons-material";
 
 
 type AddItemFormPropsType = {
-    addItem:(title: string) => void
+    addItem: (title: string) => void
 
 }
 export const AddItemForm = (props: AddItemFormPropsType) => {
@@ -41,13 +41,22 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
     }
     return (
         <div>
-            <input className={error ? 'error' : ''}
+            {/*   <input className={error ? 'error' : ''}
                    value={title}
                    onChange={onChangeInput}
                    onKeyPress={enterInput}
+            />*/}
+            <TextField value={title}
+                       variant={'outlined'}
+                       label={'Type value'}
+                       onChange={onChangeInput}
+                       onKeyPress={enterInput}
+                       error={!!error}
+                       helperText={error}
             />
-            <Button onClick={addTask}>+</Button>
-            <div className={error ? 'error-message' : ''}>{error}</div>
+            <IconButton color='primary' onClick={addTask}>
+                <ControlPoint />
+            </IconButton>
         </div>
     )
 }

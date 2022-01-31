@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useReducer} from "react";
 import {onDoubleClickEditAC, EditReducer, onBlurEditAC} from "../Reducers/EditReducer";
 import {EditableTitleReducer, onChangeInputTitleAC, onDoubleClickTitleAC} from "../Reducers/EditableTitleReducer";
+import {TextField} from "@mui/material";
 
 type EditableSpanPropsType = {
     title: string
@@ -34,7 +35,7 @@ export const EditableSpan = (props:EditableSpanPropsType) => {
         }
     }
     return edit
-       ? <input
+       ? <TextField
             value={title}
             onBlur={onBlurHandler}
             autoFocus
