@@ -2,7 +2,7 @@ import {v1} from "uuid";
 
 
 
-export const TaskReducer = (state: { [x: string]: { id: string; title: string; isDone: boolean; }[]; } , action: GeneralType) => {
+export const TaskReducer = (state: { [x: string]: { id: string; title: string; isDone: boolean; }[]; } , action: GeneralType): { [x: string]: { id: string; title: string; isDone: boolean; }[]; } => {
     switch (action.type) {
         case 'REMOVE-TASK': {
             //setTasks({...tasks, [todolistID]:tasks[todolistID].filter( f => f.id !== id )})
@@ -38,7 +38,7 @@ export const TaskReducer = (state: { [x: string]: { id: string; title: string; i
 type GeneralType = removeTaskACType
 | addTaskACType
 | updateTaskTitleACType
-| changeStatusAC
+| changeStatusACType
 | changeTaskTitleACType
 | addEmptyTasksACType
 
@@ -75,7 +75,7 @@ export const updateTaskTitleAC = (todolistID: string, title: string) => {
     } as const
 }
 
-type changeStatusAC = ReturnType<typeof changeStatusAC>
+type changeStatusACType = ReturnType<typeof changeStatusAC>
 export const changeStatusAC = (todolistID: string, taskId: string, isDone: boolean) => {
     return {
         type: 'CHANGE-STATUS',

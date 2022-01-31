@@ -1,8 +1,6 @@
 import {FilterValuesType, TodolistsType} from "../App";
 
-
-
-export const TodolistReducer = (state: Array<TodolistsType>, action: GeneralType) => {
+export const TodolistReducer = (state: Array<TodolistsType>, action: GeneralType): Array<TodolistsType> => {
     switch (action.type) {
         case 'CHANGE-TASKS': {
             //setTodolists(todolists.map( m => m.id === todolistID? {...m, filter:value}: m ))

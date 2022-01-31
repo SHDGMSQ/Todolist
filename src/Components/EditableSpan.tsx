@@ -1,6 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useReducer} from "react";
-import {onDoubleClickEditAC, EditReducer, onBlurEditAC} from "../Reducers/EditReducer";
-import {EditableTitleReducer, onChangeInputTitleAC, onDoubleClickTitleAC} from "../Reducers/EditableTitleReducer";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {TextField} from "@mui/material";
 
 type EditableSpanPropsType = {
@@ -9,25 +7,18 @@ type EditableSpanPropsType = {
 }
 
 export const EditableSpan = (props:EditableSpanPropsType) => {
-    const [edit, editDispatch] = useReducer(EditReducer, false)
-    const [title, titleDispatch] = useReducer(EditableTitleReducer, '')
+    const [edit, setEdit] = useState<boolean>(false)
+    const [title, setTitle] = useState<string>( '')
 
     const onDoubleClickHandler = () => {
-        //setEdit(true)
-        //setTitle(props.title)
-        editDispatch(onDoubleClickEditAC())
-        let title = props.title
-        titleDispatch(onDoubleClickTitleAC(title))
+        setEdit(true)
+        setTitle(props.title)
     }
     const onBlurHandler = () => {
-        //setEdit(false)
-        editDispatch(onBlurEditAC())
-        props.onChangeTitle(title)
+        setEdit(false)
     }
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        //setTitle(e.currentTarget.value)
-        let title = e.currentTarget.value
-        titleDispatch(onChangeInputTitleAC(title))
+        setTitle(e.currentTarget.value)
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.charCode === 13){

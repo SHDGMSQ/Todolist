@@ -1,7 +1,5 @@
-import React, {ChangeEvent, KeyboardEvent, useReducer} from "react";
-import {onChangeInputAC, setTrimValueAC, TitleReducer} from "../Reducers/TitleReducer";
-import {addTaskItemFormAC, ErrorReducer, onChangeErrorAC} from "../Reducers/ErrorReducer";
-import {Button, IconButton, TextField} from "@mui/material"
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {IconButton, TextField} from "@mui/material"
 import {ControlPoint} from "@mui/icons-material";
 
 
@@ -10,33 +8,25 @@ type AddItemFormPropsType = {
 
 }
 export const AddItemForm = (props: AddItemFormPropsType) => {
-    let [title, titleDispatch] = useReducer(TitleReducer, "")
-    let [error, errorDispatch] = useReducer(ErrorReducer, null)
+    let [title, setTitle] = useState<string>("")
+    let [error, setError] = useState<string | null>(null)
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-        //setError(null)
-        //setTitle(e.currentTarget.value)
-        errorDispatch(onChangeErrorAC())
-        let newValue = e.currentTarget.value
-        titleDispatch(onChangeInputAC(newValue))
+        setError(null)
+        setTitle(e.currentTarget.value)
+
     }
     const enterInput = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter")
             return addTask();
     }
     const addTask = () => {
-        /*if (title === '') {
+        if (title === '') {
             setError('Title is required')
             return
         } else {
             props.addItem(title.trim())
             setTitle("")
-        }*/
-        if (title === '') {
-            errorDispatch(addTaskItemFormAC())
-        } else {
-            props.addItem(title.trim())
-            titleDispatch(setTrimValueAC())
         }
     }
     return (
