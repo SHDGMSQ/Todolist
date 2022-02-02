@@ -7,7 +7,8 @@ import {
     TodolistReducer,
     updateTodolistTitleAC
 } from "./TodolistReducer";
-import {removeTaskAC, TaskReducer} from "./TaskReducer";
+
+
 
 //TESTS FOR TODOLIST_REDUCER
 //test for CHANGE-TASKS
@@ -67,15 +68,15 @@ test('correct todolist should be add', () => {
     let todolistID1 = v1();
     let todolistID2 = v1();
     let newTitle = "NewTodolist"
-    let newTodolistId = v1()
     const startState: Array<TodolistsType> = [
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ]
-    const endState = TodolistReducer(startState, addTodolistAC(newTitle, newTodolistId))
+    const endState = TodolistReducer(startState, addTodolistAC(newTitle))
     expect(endState.length).toBe(3)
-    expect(endState[0].id).toBe(newTodolistId)
     expect(endState[0].title).toBe(newTitle)
 })
 
-//TESTS FOR TASK_REDUCER
+
+
+

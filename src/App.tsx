@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
 import './App.css';
-import TodoList, {TaskType} from "./TodoList";
+import TodoList,{ TaskType } from "./TodoList";
 import {v1} from 'uuid';
 import {AddItemForm} from "./Components/AddItemForm";
 import {
@@ -9,7 +9,7 @@ import {
     addTaskAC,
     updateTaskTitleAC,
     changeStatusAC,
-    changeTaskTitleAC, addEmptyTasksAC
+    changeTaskTitleAC,
 } from "./Reducers/TaskReducer";
 import {
     addTodolistAC,
@@ -27,6 +27,9 @@ export type TodolistsType = {
     id: string
     title: string
     filter: FilterValuesType
+}
+export type TaskStateType = {
+    [key: string]:Array<TaskType>
 }
 
 const App = () => {
@@ -110,9 +113,8 @@ const App = () => {
         //let newTodolist: TodolistsType = {id: v1(), title, filter: 'all'}
         //setTodolists([newTodolist, ...todolists])
         //setTasks({...tasks, [newTodolist.id]:[]})
-        let newTodolistId = v1();
-        todolistsDispatch(addTodolistAC(title, newTodolistId))
-        tasksDispatch(addEmptyTasksAC(newTodolistId))
+        todolistsDispatch(addTodolistAC(title))
+        tasksDispatch(addTodolistAC(title))
     }
     return (
         <div className="App">
