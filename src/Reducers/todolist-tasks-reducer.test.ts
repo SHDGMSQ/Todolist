@@ -15,6 +15,6 @@ test('ids should be equals', () => {
     const idFromTasks = keys[0];
     const idFromTodolists = endTodolistsState[0].id;
 
-    expect(idFromTasks).toBe(action.preload.newTodolistId);
-    expect(idFromTodolists).toBe(action.preload.newTodolistId);
+    expect(idFromTasks).toBe(action.payload.newTodolistId);
+    expect(idFromTodolists).toBe(action.payload.newTodolistId);
 });

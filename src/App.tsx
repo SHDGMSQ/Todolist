@@ -92,9 +92,11 @@ const App = () => {
     }
     const removeTodolist = (todolistID: string) => {
         //setTodolists(todolists.filter( f => f.id !== todolistID ))
-        todolistsDispatch(removeTodolistAC(todolistID))
-        delete tasks[todolistID]
-        console.log(tasks)
+        const action = removeTodolistAC(todolistID)
+        todolistsDispatch(action)
+        tasksDispatch(action)
+        //delete tasks[todolistID]
+        //console.log(tasks)
     }
     const changeTaskTitle = (todolistID: string, taskId: string, title: string) => {
         //setTasks({...tasks, [todolistID]: tasks[todolistID].map( m => m.id === taskId? {...m, title} : m )})
@@ -113,8 +115,9 @@ const App = () => {
         //let newTodolist: TodolistsType = {id: v1(), title, filter: 'all'}
         //setTodolists([newTodolist, ...todolists])
         //setTasks({...tasks, [newTodolist.id]:[]})
-        todolistsDispatch(addTodolistAC(title))
-        tasksDispatch(addTodolistAC(title))
+        const action = addTodolistAC(title)
+        todolistsDispatch(action)
+        tasksDispatch(action)
     }
     return (
         <div className="App">
