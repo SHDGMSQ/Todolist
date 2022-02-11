@@ -26,7 +26,7 @@ type PropsType = {
     updateTodolistTitle: (todolistID: string, title: string) => void
 }
 
-function TodoList(props: PropsType) {
+export function TodoList(props: PropsType) {
 
     const onClickAllHandler = () => props.changeTasks(props.todolistID, 'all')
     const onClickActiveHandler = () => props.changeTasks(props.todolistID, 'active')
@@ -86,5 +86,3 @@ function TodoList(props: PropsType) {
         </div>
     );
 }
-
-export default TodoList;

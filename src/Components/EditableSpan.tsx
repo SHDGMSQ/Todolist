@@ -16,6 +16,7 @@ export const EditableSpan = (props:EditableSpanPropsType) => {
     }
     const onBlurHandler = () => {
         setEdit(false)
+        props.onChangeTitle(title)
     }
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
