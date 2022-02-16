@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
 import './App.css';
-import TodoList,{ TaskType } from "./TodoList";
+import { TaskType, TodoList } from "./TodoList";
 import {v1} from 'uuid';
 import {AddItemForm} from "./Components/AddItemForm";
 import {
@@ -103,7 +103,7 @@ const App = () => {
         tasksDispatch(changeTaskTitleAC(todolistID, taskId, title))
     }
     const updateTaskTitle = (todolistID: string, title: string) => {
-        let newTask: TaskType = {id: v1(), title, isDone: false}
+        //let newTask: TaskType = {id: v1(), title, isDone: false}
         //setTasks({...tasks, [todolistID]:[newTask, ...tasks[todolistID]]})
         tasksDispatch(updateTaskTitleAC(todolistID, title))
     }

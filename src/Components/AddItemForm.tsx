@@ -5,14 +5,15 @@ import {ControlPoint} from "@mui/icons-material";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
-
 }
-export const AddItemForm = (props: AddItemFormPropsType) => {
+
+export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
+    console.log("AddItemForm")
     let [title, setTitle] = useState<string>("")
     let [error, setError] = useState<string | null>(null)
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setError(null)
+        if (error) {setError(null)}
         setTitle(e.currentTarget.value)
 
     }
@@ -49,4 +50,4 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
             </IconButton>
         </div>
     )
-}
+})
