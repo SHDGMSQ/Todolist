@@ -9,7 +9,7 @@ export type TaskPropsType = {
     task: TaskType
     changeTaskTitle: (todolistID: string, taskId: string, newTitle: string) => void
     removeTask: (todolistID: string, taskId: string) => void
-    changeTaskStatus: (todolistID: string, taskId: string, event: boolean) => void
+    changeTaskStatus: (todolistID: string, taskId: string, isDone: boolean) => void
 }
 
 export const Task = React.memo(({
@@ -20,22 +20,22 @@ export const Task = React.memo(({
                                     changeTaskStatus
                                 }: TaskPropsType) => {
 
-    const onChangeTaskTitle = useCallback((taskId: string, newTitle: string) => changeTaskTitle(todolistID, task.id, newTitle), [changeTaskTitle, todolistID, task.id, task.title])
-    const removeTaskHandler = useCallback((taskId: string) => removeTask(todolistID, taskId), [removeTask, todolistID, task.id])
-    const onChangeHandler = useCallback((taskId: string, event: ChangeEvent<HTMLInputElement>) => changeTaskStatus(todolistID, taskId, event.currentTarget.checked), [changeTaskStatus, todolistID, task.id, task.isDone])
+    const onClickHandler = useCallback(() => removeTask(todolistID, task.id), [removeTask, task.id])
+    const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(todolistID, task.id, e.currentTarget.checked),[changeTaskStatus, task.id])
+    const onChangeTaskTitle = useCallback((newTitle: string) => changeTaskTitle(todolistID, task.id, newTitle), [changeTaskTitle, task.id])
 
 
     return <div>
         <li key={task.id}
             className={task.isDone ? 'is-done' : ''}>
             <Checkbox
-                onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler(task.id, e)}
+                onChange={onChangeHandler}
                 checked={task.isDone}/>
             <EditableSpan
                 title={task.title}
-                onChangeTitle={(newTitle: string) => onChangeTaskTitle(task.id, newTitle)}
+                onChangeTitle={onChangeTaskTitle}
             />
-            <IconButton onClick={() => removeTaskHandler(task.id)}>
+            <IconButton onClick={onClickHandler}>
                 <Delete/>
             </IconButton>
         </li>
