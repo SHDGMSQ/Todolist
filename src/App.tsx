@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
 import './App.css';
-import TodoList,{ TaskType } from "./TodoList";
+import {TodoList, TaskType } from "./TodoList";
 import {v1} from 'uuid';
 import {AddItemForm} from "./Components/AddItemForm";
 import {
@@ -34,6 +34,7 @@ export type TaskStateType = {
 
 const App = () => {
 
+    //newInitCommit
     //init commit
     //with reducers
     /*
