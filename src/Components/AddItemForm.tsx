@@ -1,6 +1,6 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {IconButton, TextField} from "@mui/material"
-import {ControlPoint} from "@mui/icons-material";
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {IconButton, TextField} from '@mui/material';
+import {ControlPoint} from '@mui/icons-material';
 
 
 type AddItemFormPropsType = {
@@ -8,28 +8,30 @@ type AddItemFormPropsType = {
 }
 
 export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
-    console.log("AddItemForm")
-    let [title, setTitle] = useState<string>("")
-    let [error, setError] = useState<string | null>(null)
+    console.log('AddItemForm');
+    let [title, setTitle] = useState<string>('');
+    let [error, setError] = useState<string | null>(null);
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-        if (error) {setError(null)}
-        setTitle(e.currentTarget.value)
+        if (error) {
+            setError(null);
+        }
+        setTitle(e.currentTarget.value);
 
-    }
+    };
     const enterInput = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter")
+        if (e.key === 'Enter')
             return addTask();
-    }
+    };
     const addTask = () => {
         if (title === '') {
-            setError('Title is required')
-            return
+            setError('Title is required');
+            return;
         } else {
-            props.addItem(title.trim())
-            setTitle("")
+            props.addItem(title.trim());
+            setTitle('');
         }
-    }
+    };
     return (
         <div>
             {/*   <input className={error ? 'error' : ''}
@@ -45,9 +47,9 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
                        error={!!error}
                        helperText={error}
             />
-            <IconButton color='primary' onClick={addTask}>
-                <ControlPoint />
+            <IconButton color="primary" onClick={addTask}>
+                <ControlPoint/>
             </IconButton>
         </div>
-    )
-})
+    );
+});

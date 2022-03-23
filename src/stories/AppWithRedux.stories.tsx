@@ -1,11 +1,7 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import {AddItemForm} from "../Components/AddItemForm";
-import {action} from "@storybook/addon-actions";
-import AppWithRedux from "../AppWithRedux";
-import {Provider} from "react-redux";
-import {store} from "../state/store";
-import {ReduxStoreProviderDecorator} from "../state/ReduxStoreProviderDecoration";
+import AppWithRedux from '../AppWithRedux';
+import {ReduxStoreProviderDecorator} from '../state/ReduxStoreProviderDecoration';
 
 
 export default {

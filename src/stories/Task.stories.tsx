@@ -1,7 +1,8 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {Task} from '../Task';
-import {action} from "@storybook/addon-actions";
+import {action} from '@storybook/addon-actions';
+import {ReduxStoreProviderDecorator} from '../state/ReduxStoreProviderDecoration';
 
 
 export default {
@@ -12,6 +13,7 @@ export default {
         removeTask: action('removeTask'),
         changeTaskStatus: action('changeTaskStatus')
     },
+    decorators: [ReduxStoreProviderDecorator],
 } as ComponentMeta<typeof Task>;
 
 
