@@ -68,7 +68,7 @@ export type TaskBodyType = {
     deadline: string
 }
 
-let TaskBody = {
+let UpdateTaskModel = {
     title: 'UPDATED-TITLE',
     description: '',
     completed: false,
@@ -122,7 +122,7 @@ export const UpdateTask = () => {
     useEffect(() => {
         let todolistId = 'a7b53abe-ff75-4fa4-869f-eda7d0f8baa0'
         let taskId = '8b586d36-ad7e-453e-8135-fb4218d3053c'
-        tasksApi.updateTask(todolistId, taskId, TaskBody)
+        tasksApi.updateTask(todolistId, taskId, UpdateTaskModel)
             .then( (res) => {
                 setState(res.data)
             } )

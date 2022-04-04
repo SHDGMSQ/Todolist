@@ -38,8 +38,8 @@ export const tasksApi = {
     deleteTask(todolistId: string, taskId: string){
         return instance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`)
     },
-    updateTask(todolistId: string, taskId: string, TaskBody: TaskBodyType ){
-            return instance.put(`todo-lists/${todolistId}/tasks${taskId}`, TaskBody);
+    updateTask(todolistId: string, taskId: string, UpdateTaskModel: TaskBodyType ){
+            return instance.put(`todo-lists/${todolistId}/tasks/${taskId}`, UpdateTaskModel);
     },
 }
 
