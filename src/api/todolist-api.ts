@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {TaskBodyType} from '../stories/todolists-api.stories';
 
 
 const instance = axios.create({
@@ -26,6 +27,22 @@ export const todolistApi = {
     },
 }
 
+export const tasksApi = {
+
+    getTask(todolistId: string){
+        return instance.get(`/todo-lists/${todolistId}/tasks`)
+    },
+    createTask(todolistId: string, title: string){
+        return instance.post<CommonResponseType<{item: TodoType}>>(`/todo-lists/${todolistId}/tasks`, {title} )
+    },
+    deleteTask(todolistId: string, taskId: string){
+        return instance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`)
+    },
+    updateTask(todolistId: string, taskId: string, TaskBody: TaskBodyType ){
+            return instance.put(`todo-lists/${todolistId}/tasks${taskId}`, TaskBody);
+    },
+}
+
 type TodoType = {
     id: string
     title: string
@@ -38,6 +55,20 @@ type CommonResponseType<T = {}> = {
     messages: string[]
     fieldsErrors: string[]
     data: T
+}
+
+type TaskType = {
+    description: string
+    title: string
+    completed: boolean
+    status: number
+    priority: number
+    startDate: string
+    deadline: string
+    id: string
+    todoListId: string
+    order: number
+    addedDate: string
 }
 
 /*type CreateTodoResponseType = {
