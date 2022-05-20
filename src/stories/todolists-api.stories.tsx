@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import {todolistsAPI} from '../api/todolists-api';
 
 export default {
@@ -36,8 +35,8 @@ export const UpdateTodolist = () => {
     const [state, setState] = useState<any>(null);
     useEffect(() => {
         const todolistId = '9c5901a6-6daf-414f-bf7e-7dc3b6991658';
-
-        todolistsAPI.updateTodolist(todolistId)
+        const title = 'wefkjwenfwerjgowrgj'
+        todolistsAPI.updateTodolist(todolistId, title)
             .then((res) => {
                 setState(res.data);
             });
