@@ -8,7 +8,7 @@ export default {
 
 export const GetTodolists = () => {
 
-    const [state, setState] = useState(null);
+    const [state, setState] = useState<any>(null);
 
     useEffect(() => {
         todolistsAPI.getTodolists()
