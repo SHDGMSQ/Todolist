@@ -29,7 +29,7 @@ type PropsType = {
 
 export const TodoList = React.memo((props: PropsType) => {
     console.log('Todolist')
-    const onClickAllHandler =useCallback (  () => props.changeTasks(props.todolistID, 'all'), [props.todolistID])
+    const onClickAllHandler = useCallback (  () => props.changeTasks(props.todolistID, 'all'), [props.todolistID])
     const onClickActiveHandler =useCallback (() => props.changeTasks(props.todolistID, 'active'), [props.todolistID])
     const onClickCompletedHandler =useCallback (() => props.changeTasks(props.todolistID, 'completed'), [props.todolistID])
 
