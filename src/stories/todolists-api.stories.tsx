@@ -23,7 +23,14 @@ export const GetTodolists = () => {
 export const CreateTodolist = () => {
     const [state, setState] = useState<any>(null);
     const [title, setTitle] = useState<string>('');
+    const [todolists, setTodolists] = useState<any>(null);
 
+    useEffect( () => {
+        todolistsAPI.getTodolists()
+            .then( (res) => {
+                setTodolists(res.data)
+            })
+    }, [] )
 
     const createTodoHandler = () => {
         todolistsAPI.createTodolist(title)
@@ -33,6 +40,7 @@ export const CreateTodolist = () => {
     };
 
     return <div>{JSON.stringify(state)}
+        <div>{JSON.stringify(todolists)}</div>
         <div>
             <input placeholder={'title'} onChange={(e) => {
                 setTitle(e.currentTarget.value);
