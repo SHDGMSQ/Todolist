@@ -1,21 +1,15 @@
-import React, {ChangeEvent} from "react";
-import {FilterValuesType} from "./App";
-import {EditableSpan} from "./Components/EditableSpan";
-import {AddItemForm} from "./Components/AddItemForm";
-import {Button, Checkbox, IconButton} from "@mui/material";
-import {Delete} from "@mui/icons-material";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./state/store";
-import {TodolistsType} from "./AppWithRedux";
-import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC} from "./Reducers/taskReducer";
-import {changeTasksAC, removeTodolistAC, updateTodolistTitleAC} from "./Reducers/todolistReducer";
-import any = jasmine.any;
+import React, {ChangeEvent} from 'react';
 
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
+import {EditableSpan} from './Components/EditableSpan';
+import {AddItemForm} from './Components/AddItemForm';
+import {Button, Checkbox, IconButton} from '@mui/material';
+import {Delete} from '@mui/icons-material';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from './state/store';
+import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC} from './Reducers/taskReducer';
+import {changeTasksAC, removeTodolistAC, TodolistsDomainType, updateTodolistTitleAC} from './Reducers/todolistReducer';
+import {TaskStatuses, TaskType} from './api/todolists-api';
+
 
 type PropsType = {
     /*title: string
@@ -25,7 +19,7 @@ type PropsType = {
     addTask: (todolistID: string, title: string) => void*/
     todolistID: string
     /* filter: FilterValuesType
-     changeTaskStatus: (todolistID: string, taskId: string, isDone: boolean) => void
+     changeTaskStatus: (todolistID: string, taskId: string, status: TaskStatuses) => void
      removeTodolist: (todolistID: string) => void
      changeTaskTitle: (todolistID: string, taskId: string, newTitle: string) => void
      updateTaskTitle: (todolistID: string, title: string) => void
@@ -35,7 +29,7 @@ type PropsType = {
 export function TodoList1(props: PropsType) {
 
 
-    const todolist = useSelector<AppRootStateType, TodolistsType>(state => state.todolists.filter(f => f.id === props.todolistID)[0])
+    const todolist = useSelector<AppRootStateType, TodolistsDomainType>(state => state.todolists.filter(f => f.id === props.todolistID)[0])
 
 
     let tasks = useSelector<AppRootStateType, Array<TaskType>>(state => state.tasks[props.todolistID])
@@ -43,9 +37,9 @@ export function TodoList1(props: PropsType) {
     const dispatch = useDispatch()
 
     if (todolist.filter === 'active')
-        tasks = tasks.filter(t => !t.isDone)
+        tasks = tasks.filter(t => t.status === TaskStatuses.New)
     if (todolist.filter === 'completed')
-        tasks = tasks.filter(t => t.isDone)
+        tasks = tasks.filter(t => t.status === TaskStatuses.Completed)
 
     const onClickAllHandler = () => {
         //props.changeTasks(props.todolistID, 'all')
@@ -73,7 +67,7 @@ export function TodoList1(props: PropsType) {
     }
     const onChangeHandler = (taskId: string, event: ChangeEvent<HTMLInputElement>) => {
         //props.changeTaskStatus(props.todolistID, taskId, event.currentTarget.checked)
-        dispatch(changeStatusAC(props.todolistID, taskId, event.currentTarget.checked))
+        dispatch(changeStatusAC(props.todolistID, taskId, event.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New))
     }
     const updateTaskTitleHandler = (title: string) => {
         //props.updateTaskTitle(props.todolistID, title)
@@ -100,10 +94,10 @@ export function TodoList1(props: PropsType) {
                     {
                         tasks.map(t => {
                             return <li key={t.id}
-                                       className={t.isDone ? 'is-done' : ''}>
+                                       className={t.status === TaskStatuses.Completed ? 'is-done' : ''}>
                                 <Checkbox
                                     onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler(t.id, e)}
-                                    checked={t.isDone}/>
+                                    checked={t.status === TaskStatuses.Completed}/>
                                 <EditableSpan
                                     title={t.title}
                                     onChangeTitle={(newTitle: string) => onChangeTaskTitle(t.id, newTitle)}
