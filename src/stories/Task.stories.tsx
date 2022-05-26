@@ -3,6 +3,7 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {Task} from '../Task';
 import {action} from '@storybook/addon-actions';
 import {ReduxStoreProviderDecorator} from '../state/ReduxStoreProviderDecoration';
+import {TaskStatuses, TodoTaskPriorities} from '../api/todolists-api';
 
 
 export default {
@@ -24,7 +25,8 @@ export const TaskIsDoneStory = Template.bind({});
 
 
 TaskIsDoneStory.args = {
-    task: {id: 'qwdqwd', title: 'JS', isDone: true},
+
+    task: {id: 'qwdqwd', title: 'JS', status: TaskStatuses.Completed, description: '',  todoListId: '1', order: 0, priority: TodoTaskPriorities.Low, startDate: '', deadline: '', addedDate: ''},
     todolistID: '1',
 
 };
@@ -32,7 +34,7 @@ TaskIsDoneStory.args = {
 export const TaskIsNotDoneStory = Template.bind({});
 
 TaskIsNotDoneStory.args = {
-    task: {id: 'qwdqwd', title: 'HTML', isDone: false},
+    task: {id: 'qwdqwd', title: 'HTML', status: TaskStatuses.New, description: '',  todoListId: '1', order: 0, priority: TodoTaskPriorities.Low, startDate: '', deadline: '', addedDate: ''},
     todolistID: '1',
 };
 
