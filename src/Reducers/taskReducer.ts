@@ -23,7 +23,7 @@ export const taskReducer = (state: TaskStateType = initialState , action: Genera
         }
         case 'CHANGE-STATUS': {
 
-            return {...state, [action.payload.todolistID]:state[action.payload.todolistID].map(m => m.id === action.payload.taskId ? {...m, isDone:action.payload.status } : m )}
+            return {...state, [action.payload.todolistID]:state[action.payload.todolistID].map(m => m.id === action.payload.taskId ? {...m, status:action.payload.status } : m )}
         }
         case 'CHANGE-TASK-TITLE': {
 
