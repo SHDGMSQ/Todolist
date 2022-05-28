@@ -1,9 +1,11 @@
-import {v1} from "uuid";
+import {v1} from 'uuid';
 import {
     addTodolistAC,
     changeTasksAC,
     removeTodolistAC,
-    todolistReducer, TodolistsDomainType,
+    setTodolistsAC,
+    todolistReducer,
+    TodolistsDomainType,
     updateTodolistTitleAC
 } from './todolistReducer';
 
@@ -63,7 +65,13 @@ test('correct todolist should be add', () => {
     expect(endState.length).toBe(3)
     expect(endState[0].title).toBe(newTitle)
 })
+//test for SET-TODOLISTS
+test('todolists should be add to state', () => {
 
+    const endState = todolistReducer([], setTodolistsAC(startState))
+    expect(endState.length).toBe(2)
+    expect(endState[0].title).toBe('What to learn')
+})
 
 
 

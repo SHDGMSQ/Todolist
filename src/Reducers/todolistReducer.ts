@@ -1,5 +1,6 @@
-import {v1} from "uuid";
-import {TodolistType} from '../api/todolists-api';
+import {v1} from 'uuid';
+import {todolistsAPI, TodolistType} from '../api/todolists-api';
+import {Dispatch} from 'redux';
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
 
@@ -13,30 +14,43 @@ export const todolistReducer = (state: Array<TodolistsDomainType> = initialState
     switch (action.type) {
         case 'CHANGE-TASKS': {
             //setTodolists(todolists.map( m => m.id === todolistID? {...m, filter:value}: m ))
-            return state.map( m => m.id === action.payload.todolistID ? {...m, filter:action.payload.value} : m)
+            return state.map(m => m.id === action.payload.todolistID ? {...m, filter: action.payload.value} : m);
         }
         case 'REMOVE-TODOLIST': {
             //setTodolists(todolists.filter( f => f.id !== todolistID ))
-            return state.filter( f => f.id !== action.payload.todolistID )
+            return state.filter(f => f.id !== action.payload.todolistID);
         }
         case 'UPDATE-TODOLIST-TITLE': {
             //setTodolists(todolists.map( m => m.id === todolistID ? {...m, title} : m ))
-            return state.map( m => m.id === action.payload.todolistID ? {...m, title: action.payload.title} : m )
+            return state.map(m => m.id === action.payload.todolistID ? {...m, title: action.payload.title} : m);
         }
         case 'ADD-TODOLIST': {
             //let newTodolist: TodolistsType = {id: v1(), title, filter: 'all'}
             //setTodolists([newTodolist, ...todolists])
-            let newTodolist: TodolistsDomainType = {id: action.payload.newTodolistId, title: action.payload.title, filter: 'all', addedDate: '', order: 0}
-            return [newTodolist, ...state]
+            let newTodolist: TodolistsDomainType = {
+                id: action.payload.newTodolistId,
+                title: action.payload.title,
+                filter: 'all',
+                addedDate: '',
+                order: 0
+            };
+            return [newTodolist, ...state];
         }
-        default: return state
+        case 'SET-TODOLISTS': {
+            return action.payload.todolists.map(m => {
+                return {...m, filter: 'all'};
+            });
+        }
+        default:
+            return state;
     }
-}
+};
 
 type GeneralType = changeTasksACType
-| removeTodolistACType
-| updateTodolistTitleACType
-| addTodolistACType
+    | removeTodolistACType
+    | updateTodolistTitleACType
+    | addTodolistACType
+    | setTodolistsACType
 
 type changeTasksACType = ReturnType<typeof changeTasksAC>
 export const changeTasksAC = (todolistID: string, value: FilterValuesType) => {
@@ -46,8 +60,8 @@ export const changeTasksAC = (todolistID: string, value: FilterValuesType) => {
             todolistID,
             value
         }
-    } as const
-}
+    } as const;
+};
 
 export type removeTodolistACType = ReturnType<typeof removeTodolistAC>
 export const removeTodolistAC = (todolistID: string) => {
@@ -56,8 +70,8 @@ export const removeTodolistAC = (todolistID: string) => {
         payload: {
             todolistID
         }
-    } as const
-}
+    } as const;
+};
 
 type updateTodolistTitleACType = ReturnType<typeof updateTodolistTitleAC>
 export const updateTodolistTitleAC = (todolistID: string, title: string) => {
@@ -67,8 +81,8 @@ export const updateTodolistTitleAC = (todolistID: string, title: string) => {
             todolistID,
             title
         }
-    } as const
-}
+    } as const;
+};
 
 export type addTodolistACType = ReturnType<typeof addTodolistAC>
 export const addTodolistAC = (title: string) => {
@@ -78,5 +92,30 @@ export const addTodolistAC = (title: string) => {
             title,
             newTodolistId: v1()
         }
-    } as const
+    } as const;
+};
+
+export type setTodolistsACType = {
+    type: 'SET-TODOLISTS',
+    payload: {
+        todolists: Array<TodolistType>
+    }
 }
+export const setTodolistsAC = (todolists: Array<TodolistType>) => {
+    return {
+        type: 'SET-TODOLISTS',
+        payload: {
+            todolists
+        }
+    } as const;
+};
+
+
+export const fetchTodolistsTC = () => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.getTodolists()
+            .then(res => {
+                dispatch(setTodolistsAC(res.data));
+            });
+    };
+};
