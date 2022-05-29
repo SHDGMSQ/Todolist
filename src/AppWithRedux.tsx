@@ -1,27 +1,22 @@
 import React, {useCallback, useEffect} from 'react';
 import './App.css';
-import { TodoList } from "./TodoList";
-import {AddItemForm} from "./Components/AddItemForm";
-import {
-    removeTaskAC,
-    addTaskAC,
-    updateTaskTitleAC,
-    changeStatusAC,
-    changeTaskTitleAC, removeTaskTC,
-} from './Reducers/taskReducer';
+import {TodoList} from './TodoList';
+import {AddItemForm} from './Components/AddItemForm';
+import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskTC, updateTaskTitleAC,} from './Reducers/taskReducer';
 import {
     addTodolistAC,
-    changeTasksAC, fetchTodolistsTC,
+    changeTasksAC,
+    fetchTodolistsTC,
     FilterValuesType,
-    removeTodolistAC, TodolistsDomainType,
+    removeTodolistAC,
+    TodolistsDomainType,
     updateTodolistTitleAC
 } from './Reducers/todolistReducer';
-import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@mui/material';
 import {Menu} from '@mui/icons-material';
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./state/store";
-import {TaskStatuses, TaskType } from './api/todolists-api';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from './state/store';
+import {TaskStatuses, TaskType} from './api/todolists-api';
 
 
 export type TaskStateType = {

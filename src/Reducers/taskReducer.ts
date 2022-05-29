@@ -1,7 +1,7 @@
 import {v1} from 'uuid';
 import {TaskStatuses, TaskType, todolistsAPI, TodoTaskPriorities} from '../api/todolists-api';
 import {TaskStateType} from '../App';
-import {addTodolistACType, removeTodolistACType, setTodolistsAC, setTodolistsACType} from './todolistReducer';
+import {addTodolistACType, removeTodolistACType, setTodolistsACType} from './todolistReducer';
 import {Dispatch} from 'redux';
 
 
