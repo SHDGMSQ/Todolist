@@ -7,8 +7,8 @@ import {
     addTaskAC,
     updateTaskTitleAC,
     changeStatusAC,
-    changeTaskTitleAC,
-} from "./Reducers/taskReducer";
+    changeTaskTitleAC, removeTaskTC,
+} from './Reducers/taskReducer';
 import {
     addTodolistAC,
     changeTasksAC, fetchTodolistsTC,
@@ -40,7 +40,7 @@ const AppWithRedux = () => {
 
 
     const removeTask = useCallback ((todolistID: string, id: string) => {
-        dispatch(removeTaskAC(todolistID, id))
+        dispatch(removeTaskTC(todolistID, id))
     }, [])
     const addTask = useCallback( (todolistID: string, title: string) => {
         dispatch(addTaskAC(todolistID, title))
