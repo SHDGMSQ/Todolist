@@ -14,8 +14,8 @@ export const taskReducer = (state: TaskStateType = initialState , action: Genera
         }
         case 'ADD-TASK' : {
 
-            let newTask: TaskType = {id: v1(), title: action.payload.title, status: TaskStatuses.New, description: '',  todoListId: action.payload.todolistID, order: 0, priority: TodoTaskPriorities.Low, startDate: '', deadline: '', addedDate: ''}
-            return {...state, [action.payload.todolistID]:[newTask, ...state[action.payload.todolistID]]}
+            let newTask: TaskType = action.payload.task
+            return {...state, [action.payload.task.todoListId]:[newTask, ...state[action.payload.task.todoListId]]}
         }
         case 'UPDATE-TASK-TITLE': {
 
@@ -73,11 +73,11 @@ export const removeTaskAC = (todolistID: string, id: string) => {
 }
 
 type addTaskACType = ReturnType<typeof addTaskAC>
-export const addTaskAC = (todolistID: string, title: string) => {
+export const addTaskAC = (task: TaskType, title: string) => {
     return {
         type: 'ADD-TASK',
         payload: {
-            todolistID,
+            task,
             title
         }
     } as const
@@ -152,5 +152,14 @@ export const removeTaskTC = (todolistId: string, taskId: string) => {
             .then( res => {
                 dispatch(removeTaskAC(todolistId, taskId))
             } )
+    }
+}
+
+export const addTaskTC = (todolistId: string, title: string) => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.createTask(todolistId, title)
+            .then(res => {
+                dispatch(addTaskAC(res.data.data.item, title))
+            })
     }
 }

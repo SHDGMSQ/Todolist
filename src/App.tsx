@@ -64,7 +64,7 @@ const App = () => {
     }
     const addTask = (todolistID: string, title: string) => {
         
-        tasksDispatch(addTaskAC(todolistID, title))
+        //tasksDispatch(addTaskAC(todolistID, title))
     }
     const changeTasks = (todolistID: string, value: FilterValuesType) => {
         //setTodolists(todolists.map( m => m.id === todolistID? {...m, filter:value}: m ))

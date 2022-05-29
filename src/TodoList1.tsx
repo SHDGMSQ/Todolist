@@ -71,7 +71,7 @@ export function TodoList1(props: PropsType) {
     }
     const updateTaskTitleHandler = (title: string) => {
         //props.updateTaskTitle(props.todolistID, title)
-        dispatch(addTaskAC(props.todolistID, title))
+        //dispatch(addTaskAC(props.todolistID, title))
     }
     const updateTodolistTitleHandler = (title: string) => {
         //props.updateTodolistTitle(props.todolistID, title)
