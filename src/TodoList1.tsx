@@ -71,7 +71,18 @@ export function TodoList1(props: PropsType) {
     }
     const updateTaskTitleHandler = (title: string) => {
         //props.updateTaskTitle(props.todolistID, title)
-        //dispatch(addTaskAC(props.todolistID, title))
+        dispatch(addTaskAC({
+            id: 'exist',
+            status: TaskStatuses.New,
+            description: '',
+            todoListId: 'todolistId2',
+            title: 'juce',
+            deadline: '',
+            priority: 0,
+            order: 0,
+            addedDate: '',
+            startDate: ''
+        }, title))
     }
     const updateTodolistTitleHandler = (title: string) => {
         //props.updateTodolistTitle(props.todolistID, title)

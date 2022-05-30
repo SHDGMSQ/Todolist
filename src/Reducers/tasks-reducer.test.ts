@@ -1,5 +1,5 @@
-import {TaskStatuses, TodoTaskPriorities } from "../api/todolists-api";
-import {TaskStateType} from "../App";
+import {TaskStatuses, TodoTaskPriorities} from '../api/todolists-api';
+import {TaskStateType} from '../App';
 import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC, setTasksAC, taskReducer} from './taskReducer';
 import {removeTodolistAC, setTodolistsAC} from './todolistReducer';
 
@@ -45,10 +45,20 @@ test('correct task should be deleted from correct array', () => {
 });
 
 //test for ADD-TASK
-/*test('correct task should be added to correct array', () => {
+test('correct task should be added to correct array', () => {
 
-
-    const action = addTaskAC('todolistId2', 'juce');
+    const action = addTaskAC({
+        id: 'exist',
+        status: TaskStatuses.New,
+        description: '',
+        todoListId: 'todolistId2',
+        title: 'juce',
+        deadline: '',
+        priority: 0,
+        order: 0,
+        addedDate: '',
+        startDate: ''
+    }, 'juce');
 
     const endState = taskReducer(startState, action)
 
@@ -57,7 +67,7 @@ test('correct task should be deleted from correct array', () => {
     expect(endState["todolistId2"][0].id).toBeDefined();
     expect(endState["todolistId2"][0].title).toBe('juce');
     expect(endState["todolistId2"][0].status).toBe(TaskStatuses.New);
-})*/
+})
 
 //test for CHANGE-STATUS
 test('status of specified task should be changed', () => {

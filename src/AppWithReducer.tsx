@@ -3,7 +3,14 @@ import './App.css';
 import {TodoList} from './TodoList';
 import {v1} from 'uuid';
 import {AddItemForm} from './Components/AddItemForm';
-import {changeStatusAC, changeTaskTitleAC, removeTaskAC, taskReducer, updateTaskTitleAC,} from './Reducers/taskReducer';
+import {
+    addTaskAC,
+    changeStatusAC,
+    changeTaskTitleAC,
+    removeTaskAC,
+    taskReducer,
+    updateTaskTitleAC,
+} from './Reducers/taskReducer';
 import {
     addTodolistAC,
     changeTasksAC,
@@ -53,7 +60,18 @@ const AppWithReducer = () => {
         tasksDispatch(removeTaskAC(todolistID, id))
     }
     const addTask = (todolistID: string, title: string) => {
-        //tasksDispatch(addTaskAC(todolistID, title))
+        tasksDispatch(addTaskAC({
+            id: 'exist',
+            status: TaskStatuses.New,
+            description: '',
+            todoListId: 'todolistId2',
+            title: 'juce',
+            deadline: '',
+            priority: 0,
+            order: 0,
+            addedDate: '',
+            startDate: ''
+        }, title))
     }
     const changeTasks = (todolistID: string, value: FilterValuesType) => {
         todolistsDispatch(changeTasksAC(todolistID, value))

@@ -64,7 +64,18 @@ const App = () => {
     }
     const addTask = (todolistID: string, title: string) => {
         
-        //tasksDispatch(addTaskAC(todolistID, title))
+        tasksDispatch(addTaskAC({
+            id: 'exist',
+            status: TaskStatuses.New,
+            description: '',
+            todoListId: 'todolistId2',
+            title: 'juce',
+            deadline: '',
+            priority: 0,
+            order: 0,
+            addedDate: '',
+            startDate: ''
+        }, title))
     }
     const changeTasks = (todolistID: string, value: FilterValuesType) => {
         //setTodolists(todolists.map( m => m.id === todolistID? {...m, filter:value}: m ))
