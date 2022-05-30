@@ -95,7 +95,12 @@ const AppWithReducer = () => {
         todolistsDispatch(updateTodolistTitleAC(todolistID, title))
     }
     const addTodolist = (title: string) => {
-        const action = addTodolistAC(title)
+        const action = addTodolistAC({
+            id: '',
+            title: 'New',
+            order: 0,
+            addedDate: ''
+        }, title)
         todolistsDispatch(action)
         tasksDispatch(action)
     }

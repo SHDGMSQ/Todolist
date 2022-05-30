@@ -2,9 +2,9 @@ import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {TodoList} from './TodoList';
 import {AddItemForm} from './Components/AddItemForm';
-import {addTaskAC, addTaskTC, changeStatusAC, changeTaskTitleAC, removeTaskTC, updateTaskTitleAC,} from './Reducers/taskReducer';
+import {addTaskTC, changeStatusAC, changeTaskTitleAC, removeTaskTC, updateTaskTitleAC,} from './Reducers/taskReducer';
 import {
-    addTodolistAC,
+    addTodolistTC,
     changeTasksAC,
     fetchTodolistsTC,
     FilterValuesType,
@@ -60,8 +60,7 @@ const AppWithRedux = () => {
         dispatch(updateTodolistTitleAC(todolistID, title))
     }, [])
     const addTodolist = useCallback( (title: string) => {
-        const action = addTodolistAC(title)
-        dispatch(action)
+        dispatch(addTodolistTC(title))
     }, [dispatch])
     return (
 

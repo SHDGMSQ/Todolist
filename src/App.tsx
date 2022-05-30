@@ -110,7 +110,12 @@ const App = () => {
         //let newTodolist: TodolistsType = {id: v1(), title, filter: 'all'}
         //setTodolists([newTodolist, ...todolists])
         //setTasks({...tasks, [newTodolist.id]:[]})
-        const action = addTodolistAC(title)
+        const action = addTodolistAC({
+            id: '',
+            title: 'New',
+            order: 0,
+            addedDate: ''
+        }, title)
         todolistsDispatch(action)
         tasksDispatch(action)
     }

@@ -142,7 +142,7 @@ export const GetTasks = () => {
     useEffect(() => {
         todolistsAPI.getTodolists()
             .then((res) => {
-                setState(res.data);
+                setTodolists(res.data);
             });
     }, []);
 

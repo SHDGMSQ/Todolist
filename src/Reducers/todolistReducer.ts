@@ -1,4 +1,3 @@
-import {v1} from 'uuid';
 import {todolistsAPI, TodolistType} from '../api/todolists-api';
 import {Dispatch} from 'redux';
 
@@ -25,15 +24,8 @@ export const todolistReducer = (state: Array<TodolistsDomainType> = initialState
             return state.map(m => m.id === action.payload.todolistID ? {...m, title: action.payload.title} : m);
         }
         case 'ADD-TODOLIST': {
-            //let newTodolist: TodolistsType = {id: v1(), title, filter: 'all'}
-            //setTodolists([newTodolist, ...todolists])
-            let newTodolist: TodolistsDomainType = {
-                id: action.payload.newTodolistId,
-                title: action.payload.title,
-                filter: 'all',
-                addedDate: '',
-                order: 0
-            };
+
+            const newTodolist: TodolistsDomainType = {...action.payload.todolist, filter: 'all'}
             return [newTodolist, ...state];
         }
         case 'SET-TODOLISTS': {
@@ -85,12 +77,12 @@ export const updateTodolistTitleAC = (todolistID: string, title: string) => {
 };
 
 export type addTodolistACType = ReturnType<typeof addTodolistAC>
-export const addTodolistAC = (title: string) => {
+export const addTodolistAC = (todolist: TodolistType ,title: string) => {
     return {
         type: 'ADD-TODOLIST',
         payload: {
             title,
-            newTodolistId: v1()
+            todolist
         }
     } as const;
 };
@@ -119,3 +111,12 @@ export const fetchTodolistsTC = () => {
             });
     };
 };
+
+export const addTodolistTC = (title: string) => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.createTodolist(title)
+            .then(res => {
+                dispatch(addTodolistAC(res.data.data.item, title))
+            })
+    }
+}
