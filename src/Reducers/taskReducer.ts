@@ -1,5 +1,4 @@
-import {v1} from 'uuid';
-import {TaskStatuses, TaskType, todolistsAPI, TodoTaskPriorities} from '../api/todolists-api';
+import {TaskStatuses, TaskType, todolistsAPI} from '../api/todolists-api';
 import {TaskStateType} from '../App';
 import {addTodolistACType, removeTodolistACType, setTodolistsACType} from './todolistReducer';
 import {Dispatch} from 'redux';
@@ -16,11 +15,6 @@ export const taskReducer = (state: TaskStateType = initialState , action: Genera
 
             let newTask: TaskType = action.payload.task
             return {...state, [action.payload.task.todoListId]:[newTask, ...state[action.payload.task.todoListId]]}
-        }
-        case 'UPDATE-TASK-TITLE': {
-
-            let newTask = {id: v1(), title: action.payload.title, status: TaskStatuses.New, description: '',  todoListId: action.payload.todolistID, order: 0, priority: TodoTaskPriorities.Low, startDate: '', deadline: '', addedDate: ''}
-            return {...state, [action.payload.todolistID]:[newTask, ...state[action.payload.todolistID]]}
         }
         case 'CHANGE-STATUS': {
 
@@ -53,7 +47,6 @@ export const taskReducer = (state: TaskStateType = initialState , action: Genera
 }
 type GeneralType = removeTaskACType
 | addTaskACType
-| updateTaskTitleACType
 | changeStatusACType
 | changeTaskTitleACType
 | addTodolistACType
@@ -83,16 +76,6 @@ export const addTaskAC = (task: TaskType, title: string) => {
     } as const
 }
 
-type updateTaskTitleACType = ReturnType<typeof updateTaskTitleAC>
-export const updateTaskTitleAC = (todolistID: string, title: string) => {
-    return {
-        type: 'UPDATE-TASK-TITLE',
-        payload: {
-            todolistID,
-            title
-        }
-    } as const
-}
 
 type changeStatusACType = ReturnType<typeof changeStatusAC>
 export const changeStatusAC = (todolistID: string, taskId: string, status: TaskStatuses) => {

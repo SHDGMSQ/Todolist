@@ -21,7 +21,6 @@ type PropsType = {
     changeTaskStatus: (todolistID: string, taskId: string, status: TaskStatuses) => void
     removeTodolist: (todolistID: string) => void
     changeTaskTitle: (todolistID: string, taskId: string, newTitle: string) => void
-    updateTaskTitle: (todolistID: string, title: string) => void
     updateTodolistTitle: (todolistID: string, title: string) => void
 }
 

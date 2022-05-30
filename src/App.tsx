@@ -7,7 +7,6 @@ import {
     taskReducer,
     removeTaskAC,
     addTaskAC,
-    updateTaskTitleAC,
     changeStatusAC,
     changeTaskTitleAC,
 } from "./Reducers/taskReducer";
@@ -22,8 +21,6 @@ import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography}
 import {Menu} from '@mui/icons-material';
 import {TaskStatuses, TaskType, TodoTaskPriorities } from './api/todolists-api';
 
-
-//new init commit
 
 
 
@@ -97,11 +94,7 @@ const App = () => {
         //setTasks({...tasks, [todolistID]: tasks[todolistID].map( m => m.id === taskId? {...m, title} : m )})
         tasksDispatch(changeTaskTitleAC(todolistID, taskId, title))
     }
-    const updateTaskTitle = (todolistID: string, title: string) => {
-        //let newTask: TaskType = {id: v1(), title, isDone: false}
-        //setTasks({...tasks, [todolistID]:[newTask, ...tasks[todolistID]]})
-        tasksDispatch(updateTaskTitleAC(todolistID, title))
-    }
+
     const updateTodolistTitle = (todolistID: string, title: string) => {
         //setTodolists(todolists.map( m => m.id === todolistID ? {...m, title} : m ))
         todolistsDispatch(updateTodolistTitleAC(todolistID, title))
@@ -157,7 +150,6 @@ const App = () => {
                                     changeTaskStatus={changeStatus}
                                     removeTodolist={removeTodolist}
                                     changeTaskTitle={changeTaskTitle}
-                                    updateTaskTitle={updateTaskTitle}
                                     updateTodolistTitle={updateTodolistTitle}
                                 />
                                 </Paper>

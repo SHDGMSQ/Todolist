@@ -9,7 +9,6 @@ import {
     changeTaskTitleAC,
     removeTaskAC,
     taskReducer,
-    updateTaskTitleAC,
 } from './Reducers/taskReducer';
 import {
     addTodolistAC,
@@ -88,9 +87,7 @@ const AppWithReducer = () => {
     const changeTaskTitle = (todolistID: string, taskId: string, title: string) => {
         tasksDispatch(changeTaskTitleAC(todolistID, taskId, title))
     }
-    const updateTaskTitle = (todolistID: string, title: string) => {
-        tasksDispatch(updateTaskTitleAC(todolistID, title))
-    }
+
     const updateTodolistTitle = (todolistID: string, title: string) => {
         todolistsDispatch(updateTodolistTitleAC(todolistID, title))
     }
@@ -142,7 +139,6 @@ const AppWithReducer = () => {
                                     changeTaskStatus={changeStatus}
                                     removeTodolist={removeTodolist}
                                     changeTaskTitle={changeTaskTitle}
-                                    updateTaskTitle={updateTaskTitle}
                                     updateTodolistTitle={updateTodolistTitle}
                                 />
                                 </Paper>

@@ -2,22 +2,15 @@ import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {TodoList} from './TodoList';
 import {AddItemForm} from './Components/AddItemForm';
-import {
-    addTaskTC,
-    changeStatusAC,
-    changeTaskTitleAC,
-    changeTaskTitleTC,
-    removeTaskTC,
-    updateTaskTitleAC,
-} from './Reducers/taskReducer';
+import {addTaskTC, changeStatusAC, changeTaskTitleTC, removeTaskTC,} from './Reducers/taskReducer';
 import {
     addTodolistTC,
     changeTasksAC,
     fetchTodolistsTC,
     FilterValuesType,
-    removeTodolistAC, removeTodolistTC,
+    removeTodolistTC,
     TodolistsDomainType,
-    updateTodolistTitleAC, updateTodolistTitleTC
+    updateTodolistTitleTC
 } from './Reducers/todolistReducer';
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@mui/material';
 import {Menu} from '@mui/icons-material';
@@ -59,9 +52,7 @@ const AppWithRedux = () => {
     const changeTaskTitle = useCallback((todolistID: string, taskId: string, title: string) => {
         dispatch(changeTaskTitleTC(todolistID, taskId, title));
     }, []);
-    const updateTaskTitle = useCallback((todolistID: string, title: string) => {
-        dispatch(updateTaskTitleAC(todolistID, title));
-    }, []);
+
     const updateTodolistTitle = useCallback((todolistID: string, title: string) => {
         dispatch(updateTodolistTitleTC(todolistID, title));
     }, []);
@@ -105,7 +96,6 @@ const AppWithRedux = () => {
                                             changeTaskStatus={changeStatus}
                                             removeTodolist={removeTodolist}
                                             changeTaskTitle={changeTaskTitle}
-                                            updateTaskTitle={updateTaskTitle}
                                             updateTodolistTitle={updateTodolistTitle}
                                         />
                                     </Paper>
