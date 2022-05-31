@@ -72,7 +72,7 @@ const App = () => {
             order: 0,
             addedDate: '',
             startDate: ''
-        }, title))
+        }))
     }
     const changeTasks = (todolistID: string, value: FilterValuesType) => {
         //setTodolists(todolists.map( m => m.id === todolistID? {...m, filter:value}: m ))
@@ -108,7 +108,7 @@ const App = () => {
             title: 'New',
             order: 0,
             addedDate: ''
-        }, title)
+        })
         todolistsDispatch(action)
         tasksDispatch(action)
     }

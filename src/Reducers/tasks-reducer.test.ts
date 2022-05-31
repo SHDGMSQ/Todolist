@@ -58,7 +58,7 @@ test('correct task should be added to correct array', () => {
         order: 0,
         addedDate: '',
         startDate: ''
-    }, 'juce');
+    });
 
     const endState = taskReducer(startState, action)
 

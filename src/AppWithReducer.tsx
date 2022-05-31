@@ -58,7 +58,7 @@ const AppWithReducer = () => {
     const removeTask = (todolistID: string, id: string) => {
         tasksDispatch(removeTaskAC(todolistID, id))
     }
-    const addTask = (todolistID: string, title: string) => {
+    const addTask = () => {
         tasksDispatch(addTaskAC({
             id: 'exist',
             status: TaskStatuses.New,
@@ -70,7 +70,7 @@ const AppWithReducer = () => {
             order: 0,
             addedDate: '',
             startDate: ''
-        }, title))
+        }))
     }
     const changeTasks = (todolistID: string, value: FilterValuesType) => {
         todolistsDispatch(changeTasksAC(todolistID, value))
@@ -97,7 +97,7 @@ const AppWithReducer = () => {
             title: 'New',
             order: 0,
             addedDate: ''
-        }, title)
+        })
         todolistsDispatch(action)
         tasksDispatch(action)
     }

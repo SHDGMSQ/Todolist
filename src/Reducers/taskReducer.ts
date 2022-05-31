@@ -66,12 +66,11 @@ export const removeTaskAC = (todolistID: string, id: string) => {
 }
 
 type addTaskACType = ReturnType<typeof addTaskAC>
-export const addTaskAC = (task: TaskType, title: string) => {
+export const addTaskAC = (task: TaskType) => {
     return {
         type: 'ADD-TASK',
         payload: {
-            task,
-            title
+            task
         }
     } as const
 }
@@ -142,7 +141,7 @@ export const addTaskTC = (todolistId: string, title: string) => {
     return (dispatch: Dispatch) => {
         todolistsAPI.createTask(todolistId, title)
             .then(res => {
-                dispatch(addTaskAC(res.data.data.item, title))
+                dispatch(addTaskAC(res.data.data.item))
             })
     }
 }
@@ -155,3 +154,5 @@ export const changeTaskTitleTC = (todolistId: string, taskId: string, title: str
             })
     }
 }
+
+

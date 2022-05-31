@@ -82,7 +82,7 @@ export function TodoList1(props: PropsType) {
             order: 0,
             addedDate: '',
             startDate: ''
-        }, title))
+        }))
     }
     const updateTodolistTitleHandler = (title: string) => {
         //props.updateTodolistTitle(props.todolistID, title)

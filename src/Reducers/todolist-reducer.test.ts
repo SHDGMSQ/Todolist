@@ -66,7 +66,7 @@ test('correct todolist should be add', () => {
         order: 0,
         title: 'NewTodolist',
         addedDate: ''
-    }, newTitle))
+    }))
     expect(endState.length).toBe(3)
     expect(endState[0].title).toBe(newTitle)
 })
