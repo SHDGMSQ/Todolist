@@ -25,6 +25,8 @@ export type TaskStateType = {
 
 const AppWithRedux = () => {
 
+    //need to fix types for requests
+
     useEffect(() => {
         dispatch(fetchTodolistsTC());
     }, []);
