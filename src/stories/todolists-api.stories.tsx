@@ -180,7 +180,7 @@ export const CreateTask = () => {
     const createTaskHandler = () => {
         todolistsAPI.createTask(todolistId, title)
             .then((res) => {
-                setState(res.data);
+                setState(res.data.data.item.todoList);
             });
 
     };
