@@ -146,7 +146,7 @@ export const addTaskTC = (todolistId: string, title: string) => {
     }
 }
 
-export const changeTaskTitleTC = (todolistId: string, taskId: string, title: string) => {
+export const changeTaskTC = (todolistId: string, taskId: string, title: string) => {
     return (dispatch: Dispatch) => {
         todolistsAPI.updateTask(todolistId, taskId, title)
             .then(res => {
