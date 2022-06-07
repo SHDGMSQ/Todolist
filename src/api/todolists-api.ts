@@ -61,11 +61,11 @@ type ResponseType<D = {}> = {
 }
 export type UpdateTaskModelType = {
     title: string
-    description: string
+    description: string | null
     status: TaskStatuses
     priority: TodoTaskPriorities
-    startDate: string
-    deadline: string
+    startDate: string | null
+    deadline: string | null
 }
 
 export const todolistsAPI = {

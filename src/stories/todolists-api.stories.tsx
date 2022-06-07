@@ -180,7 +180,7 @@ export const CreateTask = () => {
     const createTaskHandler = () => {
         todolistsAPI.createTask(todolistId, title)
             .then((res) => {
-                setState(res.data.data.item.todoList);
+                setState(res.data.data.item.todoListId);
             });
 
     };
@@ -221,12 +221,12 @@ export const UpdateTask = () => {
             });
     };
 
-    const updateTaskHandler = () => {
-        todolistsAPI.updateTask(todolistId, taskId, title)
+  /*  const updateTaskHandler = () => {
+        todolistsAPI.updateTask(todolistId, taskId, )
             .then((res) => {
                 setState(res.data);
             });
-    };
+    };*/
 
     return <div>{JSON.stringify(state)}
 
@@ -243,7 +243,7 @@ export const UpdateTask = () => {
             setTitle(e.currentTarget.value);
         }} value={title}/></div>
         <button onClick={getTasksHandler}>getTasks</button>
-        <button onClick={updateTaskHandler}>updateTask</button>
+       {/* <button onClick={updateTaskHandler}>updateTask</button>*/}
     </div>;
 };
 
