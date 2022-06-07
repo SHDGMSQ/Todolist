@@ -7,7 +7,7 @@ import {
     taskReducer,
     removeTaskAC,
     addTaskAC,
-    changeStatusAC,
+    updateTaskAC,
     changeTaskTitleAC,
 } from "./Reducers/taskReducer";
 import {
@@ -80,7 +80,7 @@ const App = () => {
     }
     const changeStatus = (todolistID: string, taskId: string, status: TaskStatuses) => {
 
-        tasksDispatch(changeStatusAC(todolistID, taskId, status))
+        tasksDispatch(updateTaskAC(todolistID, taskId, {status}))
     }
     const removeTodolist = (todolistID: string) => {
         //setTodolists(todolists.filter( f => f.id !== todolistID ))

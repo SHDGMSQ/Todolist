@@ -6,7 +6,7 @@ import {Button, Checkbox, IconButton} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
-import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC} from './Reducers/taskReducer';
+import {addTaskAC, updateTaskAC, changeTaskTitleAC, removeTaskAC} from './Reducers/taskReducer';
 import {changeTasksAC, removeTodolistAC, TodolistsDomainType, updateTodolistTitleAC} from './Reducers/todolistReducer';
 import {TaskStatuses, TaskType} from './api/todolists-api';
 
@@ -67,7 +67,7 @@ export function TodoList1(props: PropsType) {
     }
     const onChangeHandler = (taskId: string, event: ChangeEvent<HTMLInputElement>) => {
         //props.changeTaskStatus(props.todolistID, taskId, event.currentTarget.checked)
-        dispatch(changeStatusAC(props.todolistID, taskId, event.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New))
+        dispatch(updateTaskAC(props.todolistID, taskId, {status: event.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New}))
     }
     const updateTaskTitleHandler = (title: string) => {
         //props.updateTaskTitle(props.todolistID, title)

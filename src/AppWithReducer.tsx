@@ -5,7 +5,7 @@ import {v1} from 'uuid';
 import {AddItemForm} from './Components/AddItemForm';
 import {
     addTaskAC,
-    changeStatusAC,
+    updateTaskAC,
     changeTaskTitleAC,
     removeTaskAC,
     taskReducer,
@@ -76,7 +76,7 @@ const AppWithReducer = () => {
         todolistsDispatch(changeTasksAC(todolistID, value))
     }
     const changeStatus = (todolistID: string, taskId: string, status: TaskStatuses) => {
-        tasksDispatch(changeStatusAC(todolistID, taskId, status))
+        tasksDispatch(updateTaskAC(todolistID, taskId, {status}))
     }
     const removeTodolist = (todolistID: string) => {
         const action = removeTodolistAC(todolistID)
