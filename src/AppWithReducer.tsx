@@ -6,7 +6,6 @@ import {AddItemForm} from './Components/AddItemForm';
 import {
     addTaskAC,
     updateTaskAC,
-    changeTaskTitleAC,
     removeTaskAC,
     taskReducer,
 } from './Reducers/taskReducer';
@@ -85,7 +84,7 @@ const AppWithReducer = () => {
 
     }
     const changeTaskTitle = (todolistID: string, taskId: string, title: string) => {
-        tasksDispatch(changeTaskTitleAC(todolistID, taskId, title))
+        tasksDispatch(updateTaskAC(todolistID, taskId, {title}))
     }
 
     const updateTodolistTitle = (todolistID: string, title: string) => {

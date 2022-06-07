@@ -1,6 +1,6 @@
 import {TaskStatuses, TodoTaskPriorities} from '../api/todolists-api';
 import {TaskStateType} from '../App';
-import {addTaskAC, updateTaskAC, changeTaskTitleAC, removeTaskAC, setTasksAC, taskReducer} from './taskReducer';
+import {addTaskAC, updateTaskAC, removeTaskAC, setTasksAC, taskReducer} from './taskReducer';
 import {removeTodolistAC, setTodolistsAC} from './todolistReducer';
 
 
@@ -85,7 +85,7 @@ test('status of specified task should be changed', () => {
 test('text of task should be changed', () => {
 
 
-    const action = changeTaskTitleAC("todolistId2", "2", 'NewTitle' );
+    const action = updateTaskAC("todolistId2", "2", {title: 'NewTitle'} );
 
     const endState = taskReducer(startState, action)
 

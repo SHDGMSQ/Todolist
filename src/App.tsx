@@ -8,7 +8,6 @@ import {
     removeTaskAC,
     addTaskAC,
     updateTaskAC,
-    changeTaskTitleAC,
 } from "./Reducers/taskReducer";
 import {
     addTodolistAC,
@@ -92,7 +91,7 @@ const App = () => {
     }
     const changeTaskTitle = (todolistID: string, taskId: string, title: string) => {
         //setTasks({...tasks, [todolistID]: tasks[todolistID].map( m => m.id === taskId? {...m, title} : m )})
-        tasksDispatch(changeTaskTitleAC(todolistID, taskId, title))
+        tasksDispatch(updateTaskAC(todolistID, taskId, {title}))
     }
 
     const updateTodolistTitle = (todolistID: string, title: string) => {

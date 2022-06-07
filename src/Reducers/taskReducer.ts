@@ -21,10 +21,7 @@ export const taskReducer = (state: TaskStateType = initialState , action: Genera
 
             return {...state, [action.payload.todolistID]:state[action.payload.todolistID].map(m => m.id === action.payload.taskId ? {...m, ...action.payload.model } : m )}
         }
-        case 'CHANGE-TASK-TITLE': {
 
-            return {...state, [action.payload.todolistID]:state[action.payload.todolistID].map(m => m.id === action.payload.taskId ? {...m, title: action.payload.title} : m )}
-        }
         case 'ADD-TODOLIST': {
             return {...state, [action.payload.todolist.id]:[]}
         }
@@ -49,7 +46,6 @@ export const taskReducer = (state: TaskStateType = initialState , action: Genera
 type GeneralType = removeTaskACType
 | addTaskACType
 | updateTaskACType
-| changeTaskTitleACType
 | addTodolistACType
 | removeTodolistACType
 | setTodolistsACType
@@ -85,25 +81,6 @@ export const updateTaskAC = (todolistID: string, taskId: string, model: UpdateDo
             todolistID,
             taskId,
             model
-        }
-    } as const
-}
-
-type changeTaskTitleACType = {
-    type: 'CHANGE-TASK-TITLE',
-    payload: {
-        todolistID: string,
-        taskId: string,
-        title: string
-    }
-}
-export const changeTaskTitleAC = (todolistID: string, taskId: string, title: string) => {
-    return {
-        type: 'CHANGE-TASK-TITLE',
-        payload: {
-            todolistID,
-            taskId,
-            title
         }
     } as const
 }

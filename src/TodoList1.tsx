@@ -6,7 +6,7 @@ import {Button, Checkbox, IconButton} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
-import {addTaskAC, updateTaskAC, changeTaskTitleAC, removeTaskAC} from './Reducers/taskReducer';
+import {addTaskAC, updateTaskAC, removeTaskAC} from './Reducers/taskReducer';
 import {changeTasksAC, removeTodolistAC, TodolistsDomainType, updateTodolistTitleAC} from './Reducers/todolistReducer';
 import {TaskStatuses, TaskType} from './api/todolists-api';
 
@@ -59,7 +59,7 @@ export function TodoList1(props: PropsType) {
     }
     const onChangeTaskTitle = (taskId: string, newTitle: string) => {
         //props.changeTaskTitle(props.todolistID, taskId, newTitle)
-        dispatch(changeTaskTitleAC(props.todolistID, taskId, newTitle))
+        dispatch(updateTaskAC(props.todolistID, taskId, {title: newTitle}))
     }
     const removeTaskHandler = (taskId: string) => {
         //props.removeTask(props.todolistID, taskId)
