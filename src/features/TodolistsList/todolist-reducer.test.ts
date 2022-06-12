@@ -7,7 +7,7 @@ import {
     todolistReducer,
     TodolistsDomainType,
     updateTodolistTitleAC
-} from './todolistReducer';
+} from './todolist-reducer';
 
 
 let todolistID1: string

@@ -1,14 +1,14 @@
 import React, {ChangeEvent} from 'react';
 
-import {EditableSpan} from './Components/EditableSpan';
-import {AddItemForm} from './Components/AddItemForm';
+import {EditableSpan} from '../components/EditableSpan/EditableSpan';
+import {AddItemForm} from '../components/AddItemForm/AddItemForm';
 import {Button, Checkbox, IconButton} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from './state/store';
-import {addTaskAC, updateTaskAC, removeTaskAC} from './Reducers/taskReducer';
-import {changeTasksAC, removeTodolistAC, TodolistsDomainType, updateTodolistTitleAC} from './Reducers/todolistReducer';
-import {TaskStatuses, TaskType} from './api/todolists-api';
+import {AppRootStateType} from '../app/store';
+import {addTaskAC, updateTaskAC, removeTaskAC} from '../features/TodolistsList/task-reducer';
+import {changeTasksAC, removeTodolistAC, TodolistsDomainType, updateTodolistTitleAC} from '../features/TodolistsList/todolist-reducer';
+import {TaskStatuses, TaskType} from '../api/todolists-api';
 
 
 type PropsType = {

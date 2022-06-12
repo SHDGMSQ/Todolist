@@ -1,24 +1,24 @@
 import React, {useReducer} from 'react';
-import './App.css';
-import { TodoList } from "./TodoList";
+import '../app/App.css';
+import { TodoList } from "../features/TodolistsList/Todolist/TodoList";
 import {v1} from 'uuid';
-import {AddItemForm} from "./Components/AddItemForm";
+import {AddItemForm} from "../components/AddItemForm/AddItemForm";
 import {
     taskReducer,
     removeTaskAC,
     addTaskAC,
     updateTaskAC,
-} from "./Reducers/taskReducer";
+} from "../features/TodolistsList/task-reducer";
 import {
     addTodolistAC,
     changeTasksAC, FilterValuesType,
     removeTodolistAC,
     todolistReducer,
     updateTodolistTitleAC
-} from './Reducers/todolistReducer';
+} from '../features/TodolistsList/todolist-reducer';
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
 import {Menu} from '@mui/icons-material';
-import {TaskStatuses, TaskType, TodoTaskPriorities } from './api/todolists-api';
+import {TaskStatuses, TaskType, TodoTaskPriorities } from '../api/todolists-api';
 
 
 

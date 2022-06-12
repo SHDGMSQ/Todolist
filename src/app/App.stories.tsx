@@ -1,18 +1,18 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import AppWithRedux from '../AppWithRedux';
+import {App} from './App';
 import {ReduxStoreProviderDecorator} from '../state/ReduxStoreProviderDecoration';
 
 
 export default {
-    title: 'TODOLIST/AppWithRedux',
-    component: AppWithRedux,
+    title: 'TODOLIST/App',
+    component: App,
     decorators: [ReduxStoreProviderDecorator]
 
-} as ComponentMeta<typeof AppWithRedux>;
+} as ComponentMeta<typeof App>;
 
 
-const Template: ComponentStory<typeof AppWithRedux> = () => <AppWithRedux/>;
+const Template: ComponentStory<typeof App> = () => <App/>;
 
 export const AppWithReduxStory = Template.bind({});
 
