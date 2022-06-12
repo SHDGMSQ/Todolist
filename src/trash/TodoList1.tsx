@@ -4,11 +4,17 @@ import {EditableSpan} from '../components/EditableSpan/EditableSpan';
 import {AddItemForm} from '../components/AddItemForm/AddItemForm';
 import {Button, Checkbox, IconButton} from '@mui/material';
 import {Delete} from '@mui/icons-material';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../app/store';
-import {addTaskAC, updateTaskAC, removeTaskAC} from '../features/TodolistsList/task-reducer';
-import {changeTasksAC, removeTodolistAC, TodolistsDomainType, updateTodolistTitleAC} from '../features/TodolistsList/todolist-reducer';
-import {TaskStatuses, TaskType} from '../api/todolists-api';
+import {addTaskAC, removeTaskAC, updateTaskAC} from '../features/TodolistsList/task-reducer';
+import {
+    changeTasksAC,
+    removeTodolistAC,
+    TodolistsDomainType,
+    updateTodolistTitleAC
+} from '../features/TodolistsList/todolist-reducer';
+import {TaskStatuses} from '../api/todolists-api';
+import {useAppDispatch, useAppSelector} from '../app/hooks';
 
 
 type PropsType = {
@@ -32,9 +38,9 @@ export function TodoList1(props: PropsType) {
     const todolist = useSelector<AppRootStateType, TodolistsDomainType>(state => state.todolists.filter(f => f.id === props.todolistID)[0])
 
 
-    let tasks = useSelector<AppRootStateType, Array<TaskType>>(state => state.tasks[props.todolistID])
+    let tasks = useAppSelector(state => state.tasks[props.todolistID])
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     if (todolist.filter === 'active')
         tasks = tasks.filter(t => t.status === TaskStatuses.New)

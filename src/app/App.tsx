@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import {AppBar, Button, Container, IconButton, Toolbar, Typography} from '@mui/material';
 import {Menu} from '@mui/icons-material';
-import {TaskType} from '../api/todolists-api';
 import {TodolistsList} from '../features/TodolistsList/TodolistsList';
 
 

@@ -4,9 +4,9 @@ import {combineReducers, createStore} from 'redux'
 
 import {v1} from 'uuid'
 import { taskReducer } from '../features/TodolistsList/task-reducer';
-import {AppRootStateType, store} from "../app/store";
 import {todolistReducer} from "../features/TodolistsList/todolist-reducer";
 import {TaskStatuses, TodoTaskPriorities} from '../api/todolists-api';
+import { AppRootStateType } from '../app/store';
 
 
 const rootReducer = combineReducers({

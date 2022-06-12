@@ -4,17 +4,15 @@ import {
     fetchTodolistsTC,
     FilterValuesType,
     removeTodolistTC,
-    TodolistsDomainType, updateTodolistTitleTC
+    updateTodolistTitleTC
 } from './todolist-reducer';
 import React, {useCallback, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../app/store';
 import {addTaskTC, removeTaskTC, updateTaskTC} from './task-reducer';
 import {TaskStatuses, TaskType} from '../../api/todolists-api';
 import {Grid, Paper} from '@mui/material';
 import {AddItemForm} from '../../components/AddItemForm/AddItemForm';
 import {TodoList} from './Todolist/TodoList';
-
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
 
 
 export const TodolistsList: React.FC<TodolistPropsType> = (props) => {
@@ -23,9 +21,9 @@ export const TodolistsList: React.FC<TodolistPropsType> = (props) => {
         dispatch(fetchTodolistsTC());
     }, []);
 
-    const todolists = useSelector<AppRootStateType, Array<TodolistsDomainType>>(state => state.todolists);
-    const tasks = useSelector<AppRootStateType, TaskStateType>(state => state.tasks);
-    const dispatch = useDispatch();
+    const todolists = useAppSelector(state => state.todolists);
+    const tasks = useAppSelector(state => state.tasks);
+    const dispatch = useAppDispatch()
 
 
     const removeTask = useCallback((todolistID: string, id: string) => {
