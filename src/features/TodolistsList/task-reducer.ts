@@ -2,6 +2,7 @@ import {TaskStatuses, TaskType, todolistsAPI, TodoTaskPriorities, UpdateTaskMode
 import {TaskStateType} from '../../trash/App';
 import {addTodolistACType, removeTodolistACType, setTodolistsACType} from './todolist-reducer';
 import {AppRootStateType, AppThunk} from '../../app/store';
+import {setAppStatusAC} from '../../app/app-reducer';
 
 
 const initialState: TaskStateType = {};
@@ -51,25 +52,32 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) =>
 
 //thunks
 export const fetchTasksTC = (todolistId: string): AppThunk => (dispatch) => {
+    dispatch(setAppStatusAC('loading'))
     todolistsAPI.getTasks(todolistId)
         .then(res => {
             dispatch(setTasksAC(res.data.items, todolistId));
+            dispatch(setAppStatusAC('succeeded'))
         });
 };
 export const removeTaskTC = (todolistId: string, taskId: string): AppThunk => (dispatch) => {
+    dispatch(setAppStatusAC('loading'))
     todolistsAPI.deleteTask(todolistId, taskId)
         .then(res => {
             dispatch(removeTaskAC(todolistId, taskId));
+            dispatch(setAppStatusAC('succeeded'))
         });
 };
 export const addTaskTC = (todolistId: string, title: string): AppThunk => (dispatch) => {
+    dispatch(setAppStatusAC('loading'))
     todolistsAPI.createTask(todolistId, title)
         .then(res => {
             dispatch(addTaskAC(res.data.data.item));
+            dispatch(setAppStatusAC('succeeded'))
         });
 };
 export const updateTaskTC = (todolistId: string, taskId: string, domainModel: UpdateDomainTaskModelType): AppThunk =>
     (dispatch, getState: () => AppRootStateType) => {
+        dispatch(setAppStatusAC('loading'))
 
         const state = getState();
         const task = state.tasks[todolistId].find(f => f.id === taskId);
@@ -89,6 +97,7 @@ export const updateTaskTC = (todolistId: string, taskId: string, domainModel: Up
         todolistsAPI.updateTask(todolistId, taskId, apiModel)
             .then(res => {
                 dispatch(updateTaskAC(res.data.data.item.todoListId, res.data.data.item.id, domainModel));
+                dispatch(setAppStatusAC('succeeded'))
             });
     };
 

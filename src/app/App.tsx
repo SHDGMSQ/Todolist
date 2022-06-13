@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
-import {AppBar, Button, Container, IconButton, Toolbar, Typography} from '@mui/material';
+import {AppBar, Button, Container, IconButton, LinearProgress, Toolbar, Typography} from '@mui/material';
 import {Menu} from '@mui/icons-material';
 import {TodolistsList} from '../features/TodolistsList/TodolistsList';
+import {useAppSelector} from './hooks';
 
 
 export const App = () => {
+
+
+    const status = useAppSelector(state => state.app.status)
 
     return (
 
@@ -21,6 +25,7 @@ export const App = () => {
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
+            {status === 'loading' && <LinearProgress color='secondary'/>}
             <Container fixed>
                 <TodolistsList/>
             </Container>
