@@ -2,7 +2,7 @@ import {TaskStatuses, TaskType, todolistsAPI, TodoTaskPriorities, UpdateTaskMode
 import {TaskStateType} from '../../trash/App';
 import {addTodolistACType, removeTodolistACType, setTodolistsACType} from './todolist-reducer';
 import {AppRootStateType, AppThunk} from '../../app/store';
-import {setAppStatusAC} from '../../app/app-reducer';
+import {setAppErrorAC, setAppStatusAC} from '../../app/app-reducer';
 
 
 const initialState: TaskStateType = {};
@@ -71,8 +71,18 @@ export const addTaskTC = (todolistId: string, title: string): AppThunk => (dispa
     dispatch(setAppStatusAC('loading'))
     todolistsAPI.createTask(todolistId, title)
         .then(res => {
-            dispatch(addTaskAC(res.data.data.item));
-            dispatch(setAppStatusAC('succeeded'))
+            if (res.data.resultCode === 0) {
+                dispatch(addTaskAC(res.data.data.item));
+                dispatch(setAppStatusAC('succeeded'))
+            } else {
+                if (res.data.messages.length) {
+                    dispatch(setAppErrorAC(res.data.messages[0]))
+                } else {
+                    dispatch(setAppErrorAC('Some error occurred'))
+                }
+                dispatch(setAppStatusAC('failed'))
+            }
+
         });
 };
 export const updateTaskTC = (todolistId: string, taskId: string, domainModel: UpdateDomainTaskModelType): AppThunk =>

@@ -4,6 +4,7 @@ import {AppBar, Button, Container, IconButton, LinearProgress, Toolbar, Typograp
 import {Menu} from '@mui/icons-material';
 import {TodolistsList} from '../features/TodolistsList/TodolistsList';
 import {useAppSelector} from './hooks';
+import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
 
 
 export const App = () => {
@@ -14,6 +15,7 @@ export const App = () => {
     return (
 
         <div className="App">
+            <ErrorSnackbar/>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
