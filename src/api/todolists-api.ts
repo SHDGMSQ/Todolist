@@ -74,7 +74,7 @@ type ResponseTaskType<D = {}> = {
     error: string | null
     data: D
 }
-type ResponseType<D = {}> = {
+export type ResponseType<D = {}> = {
     data: D
     messages: string[]
     fieldsErrors: string[],

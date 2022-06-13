@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 
-type AppActionsType = TodolistsActionsType | TasksActionsType | AppReducerActionsType
+export type AppActionsType = TodolistsActionsType | TasksActionsType | AppReducerActionsType
 export type AppRootStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, AppActionsType>
 
