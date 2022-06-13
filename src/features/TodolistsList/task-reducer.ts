@@ -2,7 +2,7 @@ import {TaskStatuses, TaskType, todolistsAPI, TodoTaskPriorities, UpdateTaskMode
 import {TaskStateType} from '../../trash/App';
 import {addTodolistACType, removeTodolistACType, setTodolistsACType} from './todolist-reducer';
 import {AppRootStateType, AppThunk} from '../../app/store';
-import {setAppErrorAC, setAppStatusAC} from '../../app/app-reducer';
+import {RequestStatusType, setAppStatusAC} from '../../app/app-reducer';
 import {AxiosError} from 'axios';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 
@@ -135,6 +135,9 @@ export type UpdateDomainTaskModelType = {
     priority?: TodoTaskPriorities
     startDate?: string | null
     deadline?: string | null
+}
+export type TasksDomainType = TaskType & {
+    entityStatus: RequestStatusType
 }
 export type TasksActionsType =
     | ReturnType<typeof removeTaskAC>

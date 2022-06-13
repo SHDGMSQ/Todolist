@@ -52,8 +52,7 @@ export const TodoList = React.memo((props: PropsType) => {
     return (
         <div>
             <h3>
-                <EditableSpan title={props.title} onChangeTitle={updateTodolistTitleHandler}/>
-                {/*<button onClick={onClickRemoveHandler}>X</button>*/}
+                <EditableSpan title={props.title} onChangeTitle={updateTodolistTitleHandler} disabled={props.entityStatus === 'loading'}/>
                 <IconButton onClick={onClickRemoveHandler} disabled={props.entityStatus === 'loading'}>
                     <Delete />
                 </IconButton>
