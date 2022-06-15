@@ -65,6 +65,7 @@ export const TodoList = React.memo((props: PropsType) => {
                     {
                         tasksForTodolist.map(t => {
                             return <Task
+                                disable={props.entityStatus === 'loading'}
                                 key={t.id}
                                 task={t}
                                 removeTask={props.removeTask}

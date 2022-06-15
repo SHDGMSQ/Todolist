@@ -10,6 +10,7 @@ export type TaskPropsType = {
     changeTaskTitle: (todolistID: string, taskId: string, newTitle: string) => void
     removeTask: (todolistID: string, taskId: string) => void
     changeTaskStatus: (todolistID: string, taskId: string, status: TaskStatuses) => void
+    disable?: boolean
 }
 
 export const Task = React.memo(({
@@ -18,6 +19,7 @@ export const Task = React.memo(({
                                     removeTask,
                                     changeTaskTitle,
                                     changeTaskStatus,
+                                    disable
                                 }: TaskPropsType) => {
 
     const onClickHandler = useCallback(() => removeTask(todolistID, task.id), [removeTask, task.id]);
@@ -33,12 +35,14 @@ export const Task = React.memo(({
             className={task.status === TaskStatuses.Completed ? 'is-done' : ''}>
             <Checkbox
                 onChange={onChangeHandler}
-                checked={task.status === TaskStatuses.Completed}/>
+                checked={task.status === TaskStatuses.Completed}
+                disabled={disable}/>
             <EditableSpan
                 title={task.title}
                 onChangeTitle={onChangeTaskTitle}
+                disabled={disable}
             />
-            <IconButton onClick={onClickHandler}>
+            <IconButton onClick={onClickHandler} disabled={disable}>
                 <Delete/>
             </IconButton>
         </li>

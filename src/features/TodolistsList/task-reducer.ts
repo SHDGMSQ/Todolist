@@ -37,6 +37,8 @@ export const taskReducer = (state: TaskStateType = initialState, action: TasksAc
         }
         case 'SET-TASKS':
             return {...state, [action.todolistId]: state[action.todolistId] = action.tasks};
+        case 'CHANGE-TASK-ENTITY-STATUS':
+            return {...state, [action.todolistID]: state[action.todolistID].map( m => m.id === action.taskId ? {...m, entityStatus: action.entityStatus} : m )}
         default:
             return state;
     }
@@ -51,6 +53,12 @@ export const updateTaskAC = (todolistID: string, taskId: string, model: UpdateDo
     ({type: 'UPDATE-TASK', todolistID, taskId, model}) as const;
 export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) =>
     ({type: 'SET-TASKS', tasks, todolistId}) as const;
+export const changeTaskEntityStatusAC = (todolistID: string, taskId: string, entityStatus: RequestStatusType) => ({
+    type: 'CHANGE-TASK-ENTITY-STATUS',
+    todolistID,
+    taskId,
+    entityStatus
+} as const);
 
 //thunks
 export const fetchTasksTC = (todolistId: string): AppThunk => (dispatch) => {
@@ -61,8 +69,8 @@ export const fetchTasksTC = (todolistId: string): AppThunk => (dispatch) => {
             dispatch(setAppStatusAC('succeeded'));
         })
         .catch((error: AxiosError) => {
-            handleServerNetworkError(dispatch, error.message)
-        })
+            handleServerNetworkError(dispatch, error.message);
+        });
 };
 export const removeTaskTC = (todolistId: string, taskId: string): AppThunk => (dispatch) => {
     dispatch(setAppStatusAC('loading'));
@@ -72,11 +80,11 @@ export const removeTaskTC = (todolistId: string, taskId: string): AppThunk => (d
                 dispatch(removeTaskAC(todolistId, taskId));
                 dispatch(setAppStatusAC('succeeded'));
             } else {
-                handleServerAppError(dispatch, res.data)
+                handleServerAppError(dispatch, res.data);
             }
         })
         .catch((error: AxiosError) => {
-            handleServerNetworkError(dispatch, error.message)
+            handleServerNetworkError(dispatch, error.message);
         });
 };
 export const addTaskTC = (todolistId: string, title: string): AppThunk => (dispatch) => {
@@ -87,11 +95,11 @@ export const addTaskTC = (todolistId: string, title: string): AppThunk => (dispa
                 dispatch(addTaskAC(res.data.data.item));
                 dispatch(setAppStatusAC('succeeded'));
             } else {
-                handleServerAppError(dispatch, res.data)
+                handleServerAppError(dispatch, res.data);
             }
         })
         .catch((error: AxiosError) => {
-            handleServerNetworkError(dispatch, error.message)
+            handleServerNetworkError(dispatch, error.message);
         });
 };
 export const updateTaskTC = (todolistId: string, taskId: string, domainModel: UpdateDomainTaskModelType): AppThunk =>
@@ -119,11 +127,11 @@ export const updateTaskTC = (todolistId: string, taskId: string, domainModel: Up
                     dispatch(updateTaskAC(res.data.data.item.todoListId, res.data.data.item.id, domainModel));
                     dispatch(setAppStatusAC('succeeded'));
                 } else {
-                    handleServerAppError(dispatch, res.data)
+                    handleServerAppError(dispatch, res.data);
                 }
             })
             .catch((error: AxiosError) => {
-                handleServerNetworkError(dispatch, error.message)
+                handleServerNetworkError(dispatch, error.message);
             });
     };
 
@@ -147,4 +155,5 @@ export type TasksActionsType =
     | addTodolistACType
     | removeTodolistACType
     | setTodolistsACType
+    | ReturnType<typeof changeTaskEntityStatusAC>
 
