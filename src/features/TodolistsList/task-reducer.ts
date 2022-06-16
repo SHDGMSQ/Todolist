@@ -9,6 +9,8 @@ import {handleServerAppError, handleServerNetworkError} from '../../utils/error-
 
 const initialState: TaskStateType = {};
 
+//need to fix tests, task, stories
+
 export const taskReducer = (state: TaskStateType = initialState, action: TasksActionsType): TaskStateType => {
     switch (action.type) {
         case 'REMOVE-TASK':
