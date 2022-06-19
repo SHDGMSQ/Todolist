@@ -15,15 +15,17 @@ import {TodoList} from './Todolist/TodoList';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 
 
-export const TodolistsList: React.FC<TodolistPropsType> = (props) => {
+export const TodolistsList: React.FC<TodolistPropsType> = ({demo = false}) => {
 
     useEffect(() => {
-        dispatch(fetchTodolistsTC());
+        if (!demo) {
+            dispatch(fetchTodolistsTC());
+        }
     }, []);
 
     const todolists = useAppSelector(state => state.todolists);
     const tasks = useAppSelector(state => state.tasks);
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
 
 
     const removeTask = useCallback((todolistID: string, id: string) => {
@@ -76,8 +78,8 @@ export const TodolistsList: React.FC<TodolistPropsType> = (props) => {
                                     filter={m.filter}
                                     changeTaskStatus={changeStatus}
                                     removeTodolist={removeTodolist}
-                                    changeTaskTitle={changeTaskTitle}
-                                    updateTodolistTitle={updateTodolistTitle}
+                                    changeTaskTitle={changeTaskTitle} updateTodolistTitle={updateTodolistTitle}
+                                    demo={demo}
                                 />
                             </Paper>
                         </Grid>
@@ -85,11 +87,12 @@ export const TodolistsList: React.FC<TodolistPropsType> = (props) => {
                 );
             })}
         </Grid>
-    </>
-}
+    </>;
+};
 
 export type TaskStateType = {
     [key: string]: Array<TaskType>
 }
 type TodolistPropsType = {
+    demo?: boolean
 }

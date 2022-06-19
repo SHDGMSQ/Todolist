@@ -7,7 +7,7 @@ import {useAppSelector} from './hooks';
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
 
 
-export const App = () => {
+export const App: React.FC<PropsType> = ({demo = false}) => {
 
 
     const status = useAppSelector(state => state.app.status)
@@ -29,10 +29,12 @@ export const App = () => {
             </AppBar>
             {status === 'loading' && <LinearProgress color='secondary'/>}
             <Container fixed>
-                <TodolistsList/>
+                <TodolistsList demo={demo}/>
             </Container>
         </div>
     );
 };
 
-
+type PropsType = {
+    demo?: boolean
+}
