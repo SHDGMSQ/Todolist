@@ -8,7 +8,7 @@ type AddItemFormPropsType = {
     disabled?: boolean
 }
 
-export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
+export const AddItemForm = React.memo(({addItem, disabled = false, ...props}: AddItemFormPropsType) => {
 
     let [title, setTitle] = useState<string>('');
     let [error, setError] = useState<string | null>(null);
@@ -29,7 +29,7 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
             setError('Title is required');
             return;
         } else {
-            props.addItem(title.trim());
+            addItem(title.trim());
             setTitle('');
         }
     };
@@ -47,9 +47,9 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
                        onKeyPress={enterInput}
                        error={!!error}
                        helperText={error}
-                       disabled={props.disabled}
+                       disabled={disabled}
             />
-            <IconButton color="primary" onClick={addTask} disabled={props.disabled}>
+            <IconButton color="primary" onClick={addTask} disabled={disabled}>
                 <ControlPoint/>
             </IconButton>
         </div>

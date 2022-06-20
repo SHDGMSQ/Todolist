@@ -238,14 +238,12 @@ const AppWithReducer = () => {
                             <Grid item>
                                 <Paper style={{padding: '10px'}}>
                                     <TodoList
+                                        todolist={m}
                                         entityStatus={m.entityStatus}
-                                        title={m.title}
                                         tasks={tasksForTodolist}
                                         removeTask={removeTask}
                                         changeTasks={changeTasks}
                                         addTask={addTask}
-                                        todolistID={m.id}
-                                        filter={m.filter}
                                         changeTaskStatus={changeStatus}
                                         removeTodolist={removeTodolist}
                                         changeTaskTitle={changeTaskTitle}

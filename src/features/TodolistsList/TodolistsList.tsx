@@ -18,9 +18,10 @@ import {useAppDispatch, useAppSelector} from '../../app/hooks';
 export const TodolistsList: React.FC<TodolistPropsType> = ({demo = false}) => {
 
     useEffect(() => {
-        if (!demo) {
-            dispatch(fetchTodolistsTC());
+        if (demo) {
+         return
         }
+        dispatch(fetchTodolistsTC());
     }, []);
 
     const todolists = useAppSelector(state => state.todolists);

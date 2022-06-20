@@ -11,6 +11,9 @@ export default {
         addItem: {
             description: 'Title was added with button clicked'
         },
+        disabled: {
+            description: 'AddItemForm is disabled'
+        }
     },
 } as ComponentMeta<typeof AddItemForm>;
 
@@ -21,6 +24,11 @@ export const AddItemFormStory = Template.bind({});
 
 AddItemFormStory.args = {
    addItem: action('Title was added with button clicked')
+};
+export const AddItemFormDisabledStory = Template.bind({});
+
+AddItemFormDisabledStory.args = {
+   disabled: true
 };
 
 
