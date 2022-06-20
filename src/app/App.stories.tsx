@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof App>;
 
 
-const Template: ComponentStory<typeof App> = () => <App demo={false}/>;
+const Template: ComponentStory<typeof App> = () => <App demo={true}/>;
 
 export const AppWithReduxStory = Template.bind({});
 
