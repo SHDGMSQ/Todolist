@@ -6,7 +6,7 @@ import {TodolistsList} from '../features/TodolistsList/TodolistsList';
 import {useAppSelector} from './hooks';
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
 
-//need to check tests for all reducers
+//need to check tests
 
 export const App: React.FC<PropsType> = ({demo = false}) => {
 
