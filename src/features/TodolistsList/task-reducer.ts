@@ -16,7 +16,7 @@ export const taskReducer = (state: TaskStateType = initialState, action: TasksAc
         case 'REMOVE-TASK':
             return {...state, [action.todolistID]: state[action.todolistID].filter(f => f.id !== action.id)};
         case 'ADD-TASK' :
-            return {...state, [action.task.todoListId]: [action.task, ...state[action.task.todoListId]]};
+            return {...state, [action.task.todoListId]: [{...action.task, entityTaskStatus: 'idle'}, ...state[action.task.todoListId]]};
         case 'UPDATE-TASK':
             return {
                 ...state,
@@ -24,7 +24,6 @@ export const taskReducer = (state: TaskStateType = initialState, action: TasksAc
             };
         case 'ADD-TODOLIST':
             return {...state, [action.todolist.id]: []};
-
         case 'REMOVE-TODOLIST': {
             const copyState = {...state};
             delete copyState[action.todolistID];
@@ -38,9 +37,16 @@ export const taskReducer = (state: TaskStateType = initialState, action: TasksAc
             return copyState;
         }
         case 'SET-TASKS':
-            return {...state, [action.todolistId]: state[action.todolistId] = action.tasks};
+            return {...state, [action.todolistId]: state[action.todolistId] = action.tasks.map( m => {
+                return {...m, entityTaskStatus: 'idle'}
+                })}
         case 'CHANGE-TASK-ENTITY-STATUS':
-            return {...state, [action.todolistID]: state[action.todolistID].map( m => m.id === action.taskId ? {...m, entityStatus: action.entityStatus} : m )}
+            return {...state,
+                [action.todolistID]: state[action.todolistID].map(m => m.id === action.taskId ? {
+                    ...m,
+                    entityTaskStatus: action.entityTaskStatus
+                } : m)
+            };
         default:
             return state;
     }
@@ -55,11 +61,11 @@ export const updateTaskAC = (todolistID: string, taskId: string, model: UpdateDo
     ({type: 'UPDATE-TASK', todolistID, taskId, model}) as const;
 export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) =>
     ({type: 'SET-TASKS', tasks, todolistId}) as const;
-export const changeTaskEntityStatusAC = (todolistID: string, taskId: string, entityStatus: RequestStatusType) => ({
+export const changeTaskEntityStatusAC = (todolistID: string, taskId: string, entityTaskStatus: RequestStatusType) => ({
     type: 'CHANGE-TASK-ENTITY-STATUS',
     todolistID,
     taskId,
-    entityStatus
+    entityTaskStatus
 } as const);
 
 //thunks
@@ -147,7 +153,7 @@ export type UpdateDomainTaskModelType = {
     deadline?: string | null
 }
 export type TasksDomainType = TaskType & {
-    entityStatus: RequestStatusType
+    entityTaskStatus: RequestStatusType
 }
 export type TasksActionsType =
     | ReturnType<typeof removeTaskAC>

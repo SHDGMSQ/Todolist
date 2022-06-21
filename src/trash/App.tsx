@@ -24,7 +24,7 @@ import {TaskStatuses, TaskType, TodoTaskPriorities} from '../api/todolists-api';
 
 
 export type TaskStateType = {
-    [key: string]: Array<TaskType>
+    [key: string]: Array<TasksDomainType>
 }
 
 const App = () => {
@@ -50,7 +50,8 @@ const App = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -63,6 +64,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -75,6 +77,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -87,6 +90,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -99,6 +103,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
         ],
         [todolistID2]: [
@@ -113,6 +118,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -125,6 +131,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -137,6 +144,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -149,6 +157,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -161,6 +170,7 @@ const App = () => {
                 startDate: '',
                 deadline: '',
                 addedDate: '',
+                entityTaskStatus: 'idle'
             },
         ]
     });
