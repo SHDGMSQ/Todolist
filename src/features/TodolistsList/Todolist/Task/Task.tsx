@@ -19,7 +19,7 @@ export const Task = React.memo(({
                                     removeTask,
                                     changeTaskTitle,
                                     changeTaskStatus,
-                                    disable
+                                    disable,
                                 }: TaskPropsType) => {
 
     const onClickHandler = useCallback(() => removeTask(todolistID, task.id), [removeTask, task.id]);

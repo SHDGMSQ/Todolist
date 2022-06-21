@@ -82,6 +82,7 @@ export const fetchTasksTC = (todolistId: string): AppThunk => (dispatch) => {
 };
 export const removeTaskTC = (todolistId: string, taskId: string): AppThunk => (dispatch) => {
     dispatch(setAppStatusAC('loading'));
+    dispatch(changeTaskEntityStatusAC(todolistId, taskId, "loading"))
     todolistsAPI.deleteTask(todolistId, taskId)
         .then(res => {
             if (res.data.resultCode === 0) {
@@ -89,10 +90,12 @@ export const removeTaskTC = (todolistId: string, taskId: string): AppThunk => (d
                 dispatch(setAppStatusAC('succeeded'));
             } else {
                 handleServerAppError(dispatch, res.data);
+                dispatch(changeTaskEntityStatusAC(todolistId, taskId, 'failed'))
             }
         })
         .catch((error: AxiosError) => {
             handleServerNetworkError(dispatch, error.message);
+            dispatch(changeTaskEntityStatusAC(todolistId, taskId, 'failed'))
         });
 };
 export const addTaskTC = (todolistId: string, title: string): AppThunk => (dispatch) => {
@@ -113,7 +116,7 @@ export const addTaskTC = (todolistId: string, title: string): AppThunk => (dispa
 export const updateTaskTC = (todolistId: string, taskId: string, domainModel: UpdateDomainTaskModelType): AppThunk =>
     (dispatch, getState: () => AppRootStateType) => {
         dispatch(setAppStatusAC('loading'));
-
+        dispatch(changeTaskEntityStatusAC(todolistId, taskId, "loading"))
         const state = getState();
         const task = state.tasks[todolistId].find(f => f.id === taskId);
         if (!task) {
@@ -134,13 +137,19 @@ export const updateTaskTC = (todolistId: string, taskId: string, domainModel: Up
                 if (res.data.resultCode === 0) {
                     dispatch(updateTaskAC(res.data.data.item.todoListId, res.data.data.item.id, domainModel));
                     dispatch(setAppStatusAC('succeeded'));
+                    dispatch(changeTaskEntityStatusAC(todolistId, taskId, "succeeded"))
                 } else {
                     handleServerAppError(dispatch, res.data);
                 }
             })
             .catch((error: AxiosError) => {
                 handleServerNetworkError(dispatch, error.message);
-            });
+                dispatch(changeTaskEntityStatusAC(todolistId, taskId, 'failed'))
+            })
+            .finally(()=> {
+                dispatch(changeTaskEntityStatusAC(todolistId, taskId, "succeeded"))
+                dispatch(changeTaskEntityStatusAC(todolistId, taskId, 'failed'))
+            })
     };
 
 //types

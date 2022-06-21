@@ -7,7 +7,7 @@ import {
     addTaskAC,
     updateTaskAC,
     removeTaskAC,
-    taskReducer,
+    taskReducer, TasksDomainType,
 } from '../features/TodolistsList/task-reducer';
 import {
     addTodolistAC,
@@ -23,7 +23,7 @@ import {TaskStatuses, TaskType, TodoTaskPriorities} from '../api/todolists-api';
 
 
 export type TaskStateType = {
-    [key: string]: Array<TaskType>
+    [key: string]: Array<TasksDomainType>
 }
 
 const AppWithReducer = () => {
@@ -49,7 +49,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -61,7 +62,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -73,7 +75,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -85,7 +88,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -97,7 +101,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
         ],
         [todolistID2]: [
@@ -111,7 +116,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -123,7 +129,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -135,7 +142,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -147,7 +155,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
             {
                 id: v1(),
@@ -159,7 +168,8 @@ const AppWithReducer = () => {
                 priority: TodoTaskPriorities.Low,
                 startDate: '',
                 deadline: '',
-                addedDate: ''
+                addedDate: '',
+                entityTaskStatus: 'idle'
             },
         ]
     });

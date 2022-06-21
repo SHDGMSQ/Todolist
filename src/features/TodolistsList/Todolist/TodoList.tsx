@@ -6,7 +6,7 @@ import {Delete} from '@mui/icons-material';
 import {Task} from './Task/Task';
 import {TaskStatuses, TaskType} from '../../../api/todolists-api';
 import {FilterValuesType, TodolistsDomainType} from '../todolist-reducer';
-import {fetchTasksTC} from '../task-reducer';
+import {fetchTasksTC, TasksDomainType} from '../task-reducer';
 import {useAppDispatch} from '../../../app/hooks';
 import {RequestStatusType} from '../../../app/app-reducer';
 
@@ -14,7 +14,7 @@ import {RequestStatusType} from '../../../app/app-reducer';
 type PropsType = {
     todolist: TodolistsDomainType
     entityStatus: RequestStatusType
-    tasks: Array<TaskType>
+    tasks: Array<TasksDomainType>
     removeTask: (todolistID: string, id: string) => void
     changeTasks: (todolistID: string, value: FilterValuesType) => void
     addTask: (todolistID: string, title: string) => void
@@ -70,7 +70,7 @@ export const TodoList = React.memo(({demo = false, ...props}: PropsType) => {
                     {
                         tasksForTodolist.map(t => {
                             return <Task
-                                disable={props.entityStatus === 'loading'}
+                                disable={props.entityStatus === 'loading' || t.entityTaskStatus === 'loading'}
                                 key={t.id}
                                 task={t}
                                 removeTask={props.removeTask}
