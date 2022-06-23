@@ -3,6 +3,7 @@ import {todolistReducer, TodolistsActionsType} from '../features/TodolistsList/t
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {appReducer, AppReducerActionsType} from './app-reducer';
+import {authReducer, AuthReducerActionsType} from '../features/Login/auth-reducer';
 
 const rootReducer = combineReducers({
     tasks: taskReducer,
@@ -12,7 +13,7 @@ const rootReducer = combineReducers({
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 
-export type AppActionsType = TodolistsActionsType | TasksActionsType | AppReducerActionsType
+export type AppActionsType = TodolistsActionsType | TasksActionsType | AppReducerActionsType | AuthReducerActionsType
 export type AppRootStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, AppActionsType>
 

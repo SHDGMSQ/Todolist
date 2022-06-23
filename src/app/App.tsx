@@ -6,7 +6,7 @@ import {TodolistsList} from '../features/TodolistsList/TodolistsList';
 import {useAppSelector} from './hooks';
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import {Login} from '../features/Login';
+import {Login} from '../features/Login/Login';
 
 
 export const App: React.FC<PropsType> = ({demo = false}) => {
