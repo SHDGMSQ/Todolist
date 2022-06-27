@@ -4,7 +4,7 @@ import {AddItemForm} from '../../../components/AddItemForm/AddItemForm';
 import {Button, IconButton} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 import {Task} from './Task/Task';
-import {TaskStatuses, TaskType} from '../../../api/todolists-api';
+import {TaskStatuses} from '../../../api/todolists-api';
 import {FilterValuesType, TodolistsDomainType} from '../todolist-reducer';
 import {fetchTasksTC, TasksDomainType} from '../task-reducer';
 import {useAppDispatch} from '../../../app/hooks';
